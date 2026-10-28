@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bestie Cares — Science-Backed Skin & Hair Care | Dermatologically Tested</title>
+  <meta name="description" content="Bestie Cares provides clinic-grade, science-backed skin and hair care solutions designed for longevity, clarity, and glowing confidence." />
+  
+  <!-- Modern Typography from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT TICKER (From Chosen Store & Molecular) -->
+  <div class="announcement-bar">
+    <div class="container announcement-content">
+      <span class="announcement-badge">Diwali Glow Offer</span>
+      <span>Enjoy <strong>FREE Delivery</strong> on orders over ₹499 • 100% Dermatologist-Formulated</span>
+      <a href="#bestsellers" class="announcement-link">Explore Bestsellers →</a>
+    </div>
+  </div>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Logo -->
+      <a href="/" class="brand-logo" aria-label="Bestie Cares Home">
+        <div class="logo-badge">
+          <span class="logo-heart">💛</span>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Bestie Cares</span>
+          <span class="brand-tagline">Love • Care • Compassion • Trust</span>
+        </div>
+      </a>
+
+      <!-- Desktop Menu -->
+      <nav class="main-nav" aria-label="Main Navigation">
+        <a href="#bestsellers" class="nav-link active" onclick="if(window.bestieStore?.currentView==='pdp'){window.navigateTo('home');} window.filterCategory('all')">Shop All</a>
+        <a href="#bestsellers" class="nav-link" onclick="if(window.bestieStore?.currentView==='pdp'){window.navigateTo('home');} window.filterCategory('sunscreen')">Sunscreens</a>
+        <a href="#bestsellers" class="nav-link" onclick="if(window.bestieStore?.currentView==='pdp'){window.navigateTo('home');} window.filterCategory('serums')">Face Serums</a>
+        <a href="#bestsellers" class="nav-link" onclick="if(window.bestieStore?.currentView==='pdp'){window.navigateTo('home');} window.filterCategory('cleansers')">Cleansers & Lotions</a>
+        <a href="#bestsellers" class="nav-link" onclick="if(window.bestieStore?.currentView==='pdp'){window.navigateTo('home');} window.filterCategory('haircare')">Hair & Scalp</a>
+        <a href="#bundles" class="nav-link" onclick="if(window.bestieStore?.currentView==='pdp'){window.navigateTo('home'); setTimeout(()=>document.getElementById('bundles')?.scrollIntoView({behavior:'smooth'}), 80);}">Routine Bundles</a>
+        <a href="#concerns" class="nav-link" onclick="if(window.bestieStore?.currentView==='pdp'){window.navigateTo('home'); setTimeout(()=>document.getElementById('concerns')?.scrollIntoView({behavior:'smooth'}), 80);}">Shop by Concern</a>
+      </nav>
+
+      <!-- Utilities (Search & Cart) -->
+      <div class="header-actions">
+        <button class="icon-btn" onclick="if(window.bestieStore?.currentView==='pdp'){window.navigateTo('home');} document.getElementById('routineFinder').scrollIntoView({behavior: 'smooth'})" aria-label="Search or Routine Finder">
+          🔍
+        </button>
+        <button class="icon-btn" id="cartToggleBtn" onclick="window.openCart()" aria-label="Open Shopping Cart">
+          🛍️
+          <span class="cart-count" id="cartCountBadge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- STOREFRONT HOME VIEW CONTAINER -->
+  <main id="storefrontHomeView">
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="container hero-editorial-grid">
+      <!-- Left Content Column -->
+      <div class="hero-content">
+        <div class="hero-pill">
+          <span class="hero-pill-icon"></span>
+          <span>Dermatologist-Formulated • Clinic-Grade Science</span>
+        </div>
+
+        <h1 class="hero-title">
+          Daily Protection,
+          <span class="highlight">Radiant You.</span>
+        </h1>
+
+        <p class="hero-description">
+          Lightweight, clinic-grade skin and hair care formulated for Indian skin tones. High-potency broad spectrum SPF 50+ PA++++, targeted active serums, and barrier repair essentials — 100% free from parabens, sulfates, and white cast.
+        </p>
+
+        <!-- Key Feature Badges Row -->
+        <div class="hero-feature-tags">
+          <span class="feature-tag">☀️ SPF 50+ PA++++ (ISO 24444)</span>
+          <span class="feature-tag">💧 100% Zero White Cast</span>
+          <span class="feature-tag">✨ Active Kojic & 20% Vit C</span>
+        </div>
+
+        <div class="hero-cta-group">
+          <a href="#bestsellers" class="btn btn-gold" onclick="if(window.bestieStore?.currentView==='pdp'){window.navigateTo('home');}">
+            Explore Bestsellers
+            <span>→</span>
+          </a>
+          <a href="#routineFinder" class="btn btn-outline">
+            Find What Works 🎯
+          </a>
+        </div>
+
+        <!-- Social Proof Bar -->
+        <div class="hero-social-proof">
+          <div class="social-proof-stars">★★★★★</div>
+          <div class="social-proof-text">
+            <strong>4.9 / 5.0 Rating</strong>
+            <span>Based on 10,000+ verified clinical skin routines</span>
+          </div>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="hero-trust-bar">
+          <div class="trust-item">
+            <span class="trust-icon">🩺</span>
+            <div class="trust-text">
+              <strong>In-Vivo ISO 24444</strong>
+              <span>Dermatologist certified</span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <span class="trust-icon">🌿</span>
+            <div class="trust-text">
+              <strong>Clean Formulation</strong>
+              <span>0% Parabens & Sulfates</span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <span class="trust-icon">🐰</span>
+            <div class="trust-text">
+              <strong>100% Cruelty Free</strong>
+              <span>Ethical & compassionate</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Visual Showcase: Dual Packshot & High-Definition Video Reel -->
+      <div class="hero-stage-column">
+        <div class="hero-editorial-showcase">
+          <!-- Ambient Halo Glow -->
+          <div class="stage-ambient-glow"></div>
+
+          <!-- Card 1: Aqua Gel Sunscreen Flagship Card -->
+          <div class="editorial-card packshot-card" onclick="window.navigateTo('pdp', 'sunscreen')" title="View Aqua Gel Sunscreen SPF 50+">
+            <div class="card-glass-badge">
+              <span class="badge-star">★</span> Flagship Bestseller
+            </div>
+            <div class="card-img-wrap">
+              <img src="/client_assets/sunscreen.jpg" alt="Aqua Gel Sunscreen SPF 50+ PA++++" />
+            </div>
+            <div class="hero-card-meta">
+              <div class="meta-title">Aqua Gel Sunscreen</div>
+              <div class="meta-sub">SPF 50+ PA++++ • Zero White Cast</div>
+              <div class="meta-price-row">
+                <span class="price-val">₹499</span>
+                <span class="price-mrp">₹599</span>
+                <span class="view-pill">View Details →</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Live Application Video Reel Card -->
+          <div class="editorial-card video-reel-card" title="Watch Kojic Acid Serum Application">
+            <div class="video-live-badge">
+              <span class="live-dot"></span> In Action Demo
+            </div>
+            <div class="reel-video-wrap">
+              <video 
+                id="heroReelVideo"
+                src="/client_assets/serum_video.mp4" 
+                class="reel-video" 
+                autoplay 
+                muted 
+                loop 
+                playsinline
+              ></video>
+              <button type="button" class="reel-sound-btn" onclick="window.toggleHeroVideoSound(event)" aria-label="Toggle Sound" title="Click to Unmute / Mute">
+                <span id="heroSoundIcon">🔇</span>
+              </button>
+            </div>
+            <div class="hero-card-meta" onclick="window.navigateTo('pdp', 'kojic')">
+              <div class="meta-title">Kojic Acid Glow Serum</div>
+              <div class="meta-sub">Water-light glide • Rapid absorption</div>
+              <div class="meta-price-row">
+                <span class="price-val">₹599</span>
+                <span class="price-mrp">₹749</span>
+                <span class="view-pill">Shop Serum →</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating Guarantee Badge -->
+          <div class="hero-floating-guarantee">
+            <span class="guarantee-icon">💛</span>
+            <span class="guarantee-text">Bestie Cares Promise: 100% Non-Greasy & Zero White Cast</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE ROUTINE FINDER (From Chosen Store Reference) -->
+  <section class="container routine-finder-section" id="routineFinder">
+    <div class="routine-finder-box">
+      <div class="finder-header">
+        <h3 class="finder-main-title">Not Sure Where to Start? Let's Make This Easy.</h3>
+        <p class="finder-main-sub">Select a product, match your concern & get personalised recommendations</p>
+      </div>
+
+      <!-- Segmented Chosen-Style Filter Bar -->
+      <div class="segmented-finder-bar">
+        <!-- Segment 1: Product -->
+        <div class="finder-segment" id="segmentProduct" onclick="window.toggleFinderDropdown('product', event)">
+          <span class="segment-label">PRODUCT</span>
+          <div class="segment-trigger">
+            <span id="labelFinderProduct" class="segment-val-text">All Products</span>
+            <span class="segment-chevron">▾</span>
+          </div>
+
+          <!-- Custom Luxury Dropdown -->
+          <div class="custom-dropdown-menu" id="menuFinderProduct">
+            <div class="dropdown-item active" data-val="all" onclick="window.selectFinderOption('product', 'all', 'All Products', event)">
+              <span class="item-text">✨ All Formulations</span>
+              <span class="item-check">✓</span>
+            </div>
+            <div class="dropdown-item" data-val="sunscreen" onclick="window.selectFinderOption('product', 'sunscreen', 'Sunscreen', event)">
+              <span class="item-text">☀️ Sunscreen (SPF 50+ PA++++)</span>
+              <span class="item-check">✓</span>
+            </div>
+            <div class="dropdown-item" data-val="serums" onclick="window.selectFinderOption('product', 'serums', 'Face Serums', event)">
+              <span class="item-text">🧪 Face Serums (Vit C, Collagen, Kojic)</span>
+              <span class="item-check">✓</span>
+            </div>
+            <div class="dropdown-item" data-val="cleansers" onclick="window.selectFinderOption('product', 'cleansers', 'Cleansers & Lotions', event)">
+              <span class="item-text">🧴 Cleansers & Lotions</span>
+              <span class="item-check">✓</span>
+            </div>
+            <div class="dropdown-item" data-val="haircare" onclick="window.selectFinderOption('product', 'haircare', 'Hair & Scalp Therapy', event)">
+              <span class="item-text">🌿 Hair & Scalp Therapy</span>
+              <span class="item-check">✓</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="segment-divider"></div>
+
+        <!-- Segment 2: Concern -->
+        <div class="finder-segment" id="segmentConcern" onclick="window.toggleFinderDropdown('concern', event)">
+          <span class="segment-label">CONCERN</span>
+          <div class="segment-trigger">
+            <span id="labelFinderConcern" class="segment-val-text">All Concerns</span>
+            <span class="segment-chevron">▾</span>
+          </div>
+
+          <!-- Custom Luxury Dropdown -->
+          <div class="custom-dropdown-menu" id="menuFinderConcern">
+            <div class="dropdown-item active" data-val="all" onclick="window.selectFinderOption('concern', 'all', 'All Concerns', event)">
+              <span class="item-text">🎯 All Skin Concerns</span>
+              <span class="item-check">✓</span>
+            </div>
+            <div class="dropdown-item" data-val="sun" onclick="window.selectFinderOption('concern', 'sun', 'Sun Protection & Tanning', event)">
+              <span class="item-text">☀️ Sun Protection & Tanning</span>
+              <span class="item-check">✓</span>
+            </div>
+            <div class="dropdown-item" data-val="pigmentation" onclick="window.selectFinderOption('concern', 'pigmentation', 'Dark Spots & Melasma', event)">
+              <span class="item-text">✨ Dark Spots & Melasma</span>
+              <span class="item-check">✓</span>
+            </div>
+            <div class="dropdown-item" data-val="aging" onclick="window.selectFinderOption('concern', 'aging', 'Fine Lines & Elasticity', event)">
+              <span class="item-text">🧬 Fine Lines & Elasticity</span>
+              <span class="item-check">✓</span>
+            </div>
+            <div class="dropdown-item" data-val="undereye" onclick="window.selectFinderOption('concern', 'undereye', 'Dark Circles & Puffy Eyes', event)">
+              <span class="item-text">👁️ Dark Circles & Puffy Eyes</span>
+              <span class="item-check">✓</span>
+            </div>
+            <div class="dropdown-item" data-val="dryness" onclick="window.selectFinderOption('concern', 'dryness', 'Dry & Flaky Barrier', event)">
+              <span class="item-text">💧 Dry & Flaky Barrier</span>
+              <span class="item-check">✓</span>
+            </div>
+            <div class="dropdown-item" data-val="dandruff" onclick="window.selectFinderOption('concern', 'dandruff', 'Dandruff & Flakes', event)">
+              <span class="item-text">🌿 Persistent Scalp Dandruff</span>
+              <span class="item-check">✓</span>
+            </div>
+            <div class="dropdown-item" data-val="frizz" onclick="window.selectFinderOption('concern', 'frizz', 'Frizzy & Tangled Hair', event)">
+              <span class="item-text">💆 Frizzy & Tangled Hair</span>
+              <span class="item-check">✓</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="segment-divider"></div>
+
+        <!-- Segment 3: Skin/Hair Type -->
+        <div class="finder-segment" id="segmentSkinType" onclick="window.toggleFinderDropdown('skintype', event)">
+          <span class="segment-label">SKIN TYPE</span>
+          <div class="segment-trigger">
+            <span id="labelFinderSkinType" class="segment-val-text">All Types</span>
+            <span class="segment-chevron">▾</span>
+          </div>
+
+          <!-- Custom Luxury Dropdown -->
+          <div class="custom-dropdown-menu" id="menuFinderSkinType">
+            <div class="dropdown-item active" data-val="all" onclick="window.selectFinderOption('skintype', 'all', 'All Types', event)">
+              <span class="item-text">🧴 All Skin / Hair Types</span>
+              <span class="item-check">✓</span>
+            </div>
+            <div class="dropdown-item" data-val="oily" onclick="window.selectFinderOption('skintype', 'oily', 'Oily / Acne Prone', event)">
+              <span class="item-text">🫧 Oily / Acne Prone</span>
+              <span class="item-check">✓</span>
+            </div>
+            <div class="dropdown-item" data-val="dry" onclick="window.selectFinderOption('skintype', 'dry', 'Dry / Dehydrated', event)">
+              <span class="item-text">🌾 Dry / Dehydrated</span>
+              <span class="item-check">✓</span>
+            </div>
+            <div class="dropdown-item" data-val="sensitive" onclick="window.selectFinderOption('skintype', 'sensitive', 'Sensitive / Reactive', event)">
+              <span class="item-text">🌸 Sensitive / Reactive</span>
+              <span class="item-check">✓</span>
+            </div>
+            <div class="dropdown-item" data-val="combination" onclick="window.selectFinderOption('skintype', 'combination', 'Combination Skin', event)">
+              <span class="item-text">⚖️ Combination Skin</span>
+              <span class="item-check">✓</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Button -->
+        <button type="button" class="btn btn-finder-action" onclick="window.runRoutineFinder()">
+          FIND WHAT WORKS →
+        </button>
+      </div>
+
+      <!-- Result Dropdown -->
+      <div id="finderResultBox" class="finder-result-box" style="display:none;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+          <h4 style="font-size:1.05rem;font-weight:700;color:var(--text-primary);display:flex;align-items:center;gap:8px;">
+            <span>✨</span> <span>Recommended Clinical Routine:</span>
+          </h4>
+          <button type="button" onclick="document.getElementById('finderResultBox').style.display='none'" style="font-size:0.8rem;color:var(--text-muted);text-decoration:underline;cursor:pointer;border:none;background:none;">Clear Results</button>
+        </div>
+        <div id="finderResultItems" class="finder-results-grid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCIENCE IN MOTION: CLINICAL TEXTURE & FORMULA SHOWCASE -->
+  <section class="video-showcase-section" id="textureShowcase">
+    <div class="container">
+      <div class="video-showcase-grid">
+        <!-- Left: Cinema Video Player -->
+        <div class="video-player-wrap">
+          <div class="cinema-frame">
+            <video 
+              id="featureTextureVideo"
+              src="/client_assets/serum_video.mp4" 
+              class="cinema-video" 
+              autoplay 
+              muted 
+              loop 
+              playsinline
+            ></video>
+            <div class="video-overlay-bar">
+              <button type="button" class="video-ctrl-btn" onclick="window.toggleTextureVideoPlay(event)" id="texturePlayBtn">
+                ⏸ Pause
+              </button>
+              <button type="button" class="video-ctrl-btn" onclick="window.toggleTextureVideoMute(event)" id="textureMuteBtn">
+                🔊 Sound On
+              </button>
+              <span class="video-tagline">Real Application • 100% Greaseless Absorption</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Formulation Science & Direct Action -->
+        <div class="video-info-content">
+          <div class="hero-pill" style="margin-bottom:12px;">
+            <span class="hero-pill-icon"></span>
+            <span>Clinically Tested Formula In Action</span>
+          </div>
+          <h2 class="showcase-title">Water-Burst Absorption.<br/><span class="highlight">Zero Sticky Residue.</span></h2>
+          <p class="showcase-description">
+            Formulated specifically for high-humidity climates and Indian skin tones. Watch how our active micro-emulsion penetrates instantly into deeper epidermal layers, delivering 2% Kojic Acid and pure Vitamin C without clogging pores.
+          </p>
+
+          <!-- 3 Clinical Checkpoints -->
+          <div class="texture-points-list">
+            <div class="texture-point-item">
+              <div class="point-num">01</div>
+              <div class="point-detail">
+                <strong>10-Second Micro-Absorption</strong>
+                <span>Liquifies on touch into refreshing water droplets with zero greasy residue.</span>
+              </div>
+            </div>
+            <div class="texture-point-item">
+              <div class="point-num">02</div>
+              <div class="point-detail">
+                <strong>Targeted Tyrosinase Inhibitor</strong>
+                <span>2% Kojic Acid + Niacinamide actively targets melasma, sun tanning, and dark spots.</span>
+              </div>
+            </div>
+            <div class="texture-point-item">
+              <div class="point-num">03</div>
+              <div class="point-detail">
+                <strong>Breathable Everyday Finish</strong>
+                <span>Non-comedogenic, featherlight, and sits seamlessly under SPF 50+ and makeup.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Featured Product Quick-Add Card -->
+          <div class="video-featured-card">
+            <img src="/client_assets/kojic.jpg" alt="Kojic Acid Serum" class="featured-thumb" onclick="window.navigateTo('pdp', 'kojic')" />
+            <div class="featured-info" onclick="window.navigateTo('pdp', 'kojic')">
+              <strong>Kojic Acid 2% Dark Spot Serum (30ml)</strong>
+              <div class="featured-price-row">
+                <span class="price-val">₹599</span>
+                <span class="price-mrp">₹749</span>
+                <span class="save-tag">SAVE 20%</span>
+              </div>
+            </div>
+            <button type="button" class="btn btn-gold btn-sm" onclick="window.addToCart('kojic')">
+              + Add to Bag
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BESTSELLERS PRODUCT CATALOG -->
+  <section class="section-padding" id="bestsellers">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subhead">Doctor Formulated Essentials</span>
+        <h2 class="section-title">Explore Our Bestsellers</h2>
+        <p class="section-description">
+          Each formula is balanced with high-performance active percentages for guaranteed results without sensitivity.
+        </p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="category-tabs" role="tablist">
+        <button class="category-tab-btn active" data-category="all" onclick="window.filterCategory('all')">All Formulations</button>
+        <button class="category-tab-btn" data-category="sunscreen" onclick="window.filterCategory('sunscreen')">Sunscreens</button>
+        <button class="category-tab-btn" data-category="serums" onclick="window.filterCategory('serums')">Face Serums</button>
+        <button class="category-tab-btn" data-category="cleansers" onclick="window.filterCategory('cleansers')">Cleansers & Lotions</button>
+        <button class="category-tab-btn" data-category="haircare" onclick="window.filterCategory('haircare')">Hair Care</button>
+      </div>
+
+      <!-- Reactive Product Grid -->
+      <div class="product-grid" id="productGrid">
+        <!-- Injected via js/app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- CURATED CLINICAL BUNDLES & ROUTINE KITS (From Chosen Store & Molecular Company) -->
+  <section class="section-padding bundle-kits-section" id="bundles">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subhead">High-Value Clinical Regimens</span>
+        <h2 class="section-title">Curated Bundles & Complete Routine Kits</h2>
+        <p class="section-description">
+          Clinically paired multi-step active routines formulated to work in harmony. Enjoy up to 36% OFF plus complimentary deluxe gifts.
+        </p>
+      </div>
+
+      <div class="bundle-kits-grid" id="bundleKitsGrid">
+        <!-- Injected via renderBundleKits() in js/app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOP BY CONCERN SECTION -->
+  <section class="section-padding" style="background:var(--bg-surface);border-top:1px solid var(--border-light);" id="concerns">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subhead">Targeted Treatments</span>
+        <h2 class="section-title">Shop by Skin & Scalp Concern</h2>
+        <p class="section-description">
+          Choose your primary goal to see the clinical solution crafted specifically for it.
+        </p>
+      </div>
+
+      <div class="concern-grid">
+        <!-- Sun Protection -->
+        <div class="concern-card" onclick="window.filterCategory('sunscreen'); document.getElementById('bestsellers').scrollIntoView({behavior:'smooth'});">
+          <div class="concern-icon-bubble" style="background:var(--teal-subtle);color:var(--teal-primary);">☀️</div>
+          <h3 class="concern-title">Sun Tanning & UV Rays</h3>
+          <p class="concern-desc">High UVA/UVB defense with SPF 50+ PA++++ that leaves zero greasy residue or white cast.</p>
+          <span class="concern-link">View Sunscreen Solution →</span>
+        </div>
+
+        <!-- Pigmentation & Spots -->
+        <div class="concern-card" onclick="window.filterCategory('serums'); document.getElementById('bestsellers').scrollIntoView({behavior:'smooth'});">
+          <div class="concern-icon-bubble" style="background:var(--wine-subtle);color:var(--wine-primary);">✨</div>
+          <h3 class="concern-title">Dark Spots & Melasma</h3>
+          <p class="concern-desc">Potent 2% Kojic Acid and Vitamin C serums that visibly fade post-acne scars and uneven pigmentation.</p>
+          <span class="concern-link">View Brightening Serums →</span>
+        </div>
+
+        <!-- Anti-Aging & Loss of Bounce -->
+        <div class="concern-card" onclick="window.filterCategory('serums'); document.getElementById('bestsellers').scrollIntoView({behavior:'smooth'});">
+          <div class="concern-icon-bubble" style="background:var(--sapphire-subtle);color:var(--sapphire-primary);">🧬</div>
+          <h3 class="concern-title">Fine Lines & Sagging Skin</h3>
+          <p class="concern-desc">Multi-peptide collagen booster that stimulates cellular repair and restores plump, firm skin bounce.</p>
+          <span class="concern-link">View Peptide Elixir →</span>
+        </div>
+
+        <!-- Under Eye Bags & Dark Circles -->
+        <div class="concern-card" onclick="window.openQuickView('undereye');">
+          <div class="concern-icon-bubble" style="background:rgba(23,24,28,0.08);color:var(--text-primary);">👁️</div>
+          <h3 class="concern-title">Puffy Eyes & Dark Circles</h3>
+          <p class="concern-desc">Cooling stainless-steel roller applicator delivering caffeine & hyaluronic acid micro-circulation.</p>
+          <span class="concern-link">View Under Eye Gel →</span>
+        </div>
+
+        <!-- Dandruff & Scalp Flakes -->
+        <div class="concern-card" onclick="window.filterCategory('haircare'); document.getElementById('bestsellers').scrollIntoView({behavior:'smooth'});">
+          <div class="concern-icon-bubble" style="background:var(--amber-subtle);color:var(--amber-primary);">🌿</div>
+          <h3 class="concern-title">Persistent Scalp Dandruff</h3>
+          <p class="concern-desc">Clinical Ciclopirox Olamine + Tea Tree shampoo that eliminates dandruff without drying hair shafts.</p>
+          <span class="concern-link">View Scalp Therapy →</span>
+        </div>
+
+        <!-- Dryness & Damaged Barrier -->
+        <div class="concern-card" onclick="window.openQuickView('lotion');">
+          <div class="concern-icon-bubble" style="background:var(--berry-subtle);color:var(--berry-primary);">💧</div>
+          <h3 class="concern-title">Dry & Flaky Skin Barrier</h3>
+          <p class="concern-desc">Multi-ceramide and shea butter moisture lock for 24-hour hydration and silky smooth barrier repair.</p>
+          <span class="concern-link">View Ceramide Lotion →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOCTOR / CLINICAL AUTHORITY SECTION (Chosen Store Inspired) -->
+  <section class="section-padding authority-section">
+    <div class="container authority-grid">
+      <div class="authority-text-col">
+        <div class="quote-symbol">“</div>
+        <p class="authority-quote">
+          Healthy skin doesn't need 10 unnecessary steps. It needs <strong>pure active ingredients at clinical percentages</strong>, delivered in formulas that feel weightless on your skin every single day.
+        </p>
+        <div class="authority-bio">
+          <h4>The Bestie Cares Guarantee</h4>
+          <p>Love • Care • Compassion • Trust</p>
+        </div>
+      </div>
+
+      <div class="promise-checklist">
+        <div class="promise-item">
+          <span class="check-icon">✓</span>
+          <div>
+            <h5>Zero White Cast</h5>
+            <p>Invisible protection engineered for Indian skin tones.</p>
+          </div>
+        </div>
+        <div class="promise-item">
+          <span class="check-icon">✓</span>
+          <div>
+            <h5>Paraben & Sulfate Free</h5>
+            <p>Non-toxic clean science without harmful additives.</p>
+          </div>
+        </div>
+        <div class="promise-item">
+          <span class="check-icon">✓</span>
+          <div>
+            <h5>Dermatologically Tested</h5>
+            <p>Rigorous clinical patch testing for zero irritation.</p>
+          </div>
+        </div>
+        <div class="promise-item">
+          <span class="check-icon">✓</span>
+          <div>
+            <h5>Cruelty Free & Gentle</h5>
+            <p>Ethical development with compassionate care.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEXTURE SPOTLIGHT VIDEO (Molecular Company Inspired) -->
+  <section class="section-padding video-spotlight-section">
+    <div class="container video-spotlight-grid">
+      <div class="texture-video-box">
+        <video 
+          src="/client_assets/serum_video.mp4" 
+          autoplay 
+          muted 
+          loop 
+          playsinline
+        ></video>
+      </div>
+
+      <div class="texture-info-content">
+        <span class="section-subhead">Formulation In Action</span>
+        <h3>Experience The Pure Drop Standard</h3>
+        <p style="color:var(--text-secondary);font-size:1.05rem;line-height:1.6;">
+          Every drop of our serums and sunscreen gel is engineered for micro-absorption. No heavy films, no pore-clogging waxes, just pure active nutrition that absorbs in seconds.
+        </p>
+
+        <div class="texture-feature-list">
+          <div class="feature-row">
+            <span class="feature-dot"></span>
+            <p><strong>Fast Absorption:</strong> Sinks into dermis within 10 seconds of application.</p>
+          </div>
+          <div class="feature-row">
+            <span class="feature-dot"></span>
+            <p><strong>Non-Comedogenic:</strong> Breathable formula suitable for acne-prone skin.</p>
+          </div>
+          <div class="feature-row">
+            <span class="feature-dot"></span>
+            <p><strong>Makeup-Friendly:</strong> Creates a silky smooth base for foundation or daily sunscreen.</p>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" onclick="if(window.bestieStore?.currentView==='pdp'){window.navigateTo('home');} window.filterCategory('serums'); document.getElementById('bestsellers').scrollIntoView({behavior:'smooth'});">
+          Explore Serums & Treatments
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLINICAL FAQ ACCORDION -->
+  <section class="section-padding" style="background:var(--bg-card);border-top:1px solid var(--border-light);" id="faq">
+    <div class="container" style="max-width:860px;">
+      <div class="section-header">
+        <span class="section-subhead">Got Questions? We’ve Got Answers.</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-description">
+          Everything you need to know about our active percentages, certifications, and delivery.
+        </p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question-btn" onclick="window.toggleFaq(this)">
+            <span>Will the Aqua Gel Sunscreen SPF 50+ leave any white cast on melanin-rich skin?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Absolutely not. Bestie Cares Aqua Gel Sunscreen is formulated with micro-encapsulated organic UV filters that melt into a transparent, invisible water finish upon application. It has undergone extensive clinical testing across Indian Fitzpatrick skin types III to VI with 100% invisible finish verified.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question-btn" onclick="window.toggleFaq(this)">
+            <span>Can I use 20% Vitamin C and 2% Kojic Acid together?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes, but we recommend splitting them between AM and PM routines for optimal efficacy. Use the Vitamin C 20% Brightening Serum in the morning followed by your Aqua Gel Sunscreen SPF 50+. Use the 2% Kojic Acid Serum at night before your Ceramide Moisturizer.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question-btn" onclick="window.toggleFaq(this)">
+            <span>How fast is shipping and is Cash on Delivery (COD) available?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Orders are dispatched within 24 hours from our climate-controlled warehouse. Delivery typically takes 2 to 4 business days across metro and tier-2 Indian cities. Cash on Delivery (COD) and 1-Click Instant UPI (GPay/PhonePe/Paytm) are fully supported.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question-btn" onclick="window.toggleFaq(this)">
+            <span>Are Bestie Cares formulations safe for sensitive and acne-prone skin?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Every Bestie Cares formulation is dermatologist patch-tested, non-comedogenic, and 100% free of parabens, sulfates, phthalates, and synthetic artificial perfumes. All actives are buffered with soothing botanicals like Licorice, Panthenol, and Allantoin.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+  <!-- END STOREFRONT HOME VIEW -->
+
+  <!-- DEDICATED PRODUCT DETAIL VIEW (PDP View) -->
+  <main id="dedicatedPdpView" style="display:none;">
+    <!-- Injected dynamically via renderDedicatedPdp() in js/app.js -->
+  </main>
+
+  <!-- STICKY FLOATING BUY BAR FOR PDP -->
+  <div id="stickyBuyBar" class="sticky-buy-bar" style="display:none;"></div>
+
+  <!-- CART DRAWER & SLIDE-OVER (Gokwik / Shopify Style) -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping Cart">
+    <div class="drawer-header">
+      <h3 class="drawer-title">
+        <span>Shopping Cart</span>
+      </h3>
+      <button class="drawer-close-btn" onclick="window.closeCart()" aria-label="Close Cart">✕</button>
+    </div>
+
+    <!-- Free Delivery Milestone Progress Bar (Chosen Store Inspired) -->
+    <div class="shipping-progress-banner">
+      <div class="progress-label" id="shippingMsgText">
+        Add <strong>₹499</strong> more to unlock <strong>FREE Delivery</strong>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="shippingProgressFill"></div>
+      </div>
+      <div id="cartFreebieTierPill" class="freebie-tier-pill">🚚 Step 1: Free Delivery at ₹499</div>
+    </div>
+
+    <!-- Items List -->
+    <div class="drawer-body" id="cartDrawerItems">
+      <!-- Items dynamically populated via js/app.js -->
+    </div>
+
+    <!-- Coupon Code Box -->
+    <div class="cart-coupon-box">
+      <div id="couponActiveBadge" class="coupon-active-badge" style="display:none;"></div>
+      <div id="couponInputRow" class="coupon-input-row">
+        <input type="text" id="couponCodeInput" placeholder="Enter coupon code (e.g. BESTIE10)" />
+        <button type="button" class="btn btn-outline" style="padding:8px 14px;font-size:0.8rem;" onclick="window.applyCouponFromInput()">Apply</button>
+      </div>
+      <div class="coupon-chips">
+        <span class="coupon-chip" onclick="window.quickApplyCoupon('BESTIE10')">🏷️ BESTIE10 (10% OFF)</span>
+        <span class="coupon-chip" onclick="window.quickApplyCoupon('DIWALI20')">✨ DIWALI20 (20% OFF)</span>
+      </div>
+    </div>
+
+    <!-- Drawer Footer -->
+    <div class="drawer-footer">
+      <div class="cart-subtotal-row">
+        <span>Items Subtotal:</span>
+        <strong id="cartSubtotal">₹0</strong>
+      </div>
+      <div class="cart-subtotal-row discount-row" id="cartDiscountRow" style="display:none;">
+        <span style="color:#166534;font-weight:600;">Coupon Discount:</span>
+        <strong id="cartDiscountAmount" style="color:#166534;">-₹0</strong>
+      </div>
+      <div class="cart-subtotal-row final-total-row">
+        <span>Total Payable:</span>
+        <strong id="cartFinalTotal">₹0</strong>
+      </div>
+      <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:12px;">
+        Tax included • Free Shipping on orders above ₹499
+      </div>
+
+      <button class="checkout-btn" onclick="window.triggerCheckout()">
+        <span>Proceed to Instant 1-Click Checkout</span>
+        <span>⚡</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- PDP MODAL / QUICK VIEW (Specifications & Accordions) -->
+  <div class="pdp-modal" id="pdpModal">
+    <div class="pdp-modal-content" id="pdpModalContent">
+      <!-- Injected via openQuickView() -->
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toastNotification" class="toast-notification"></div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom:16px;">
+            <div class="logo-badge" style="background:#000;">
+              <span class="logo-heart">💛</span>
+            </div>
+            <div class="brand-text">
+              <span class="brand-title" style="color:#fff;">Bestie Cares</span>
+              <span class="brand-tagline">Love, Care, Compassion, Trust</span>
+            </div>
+          </div>
+          <p style="font-size:0.86rem;color:#9ca3af;line-height:1.6;">
+            Dermatologically backed skincare and scalp treatments. Formulated with clinical active percentages for visible, long-lasting results.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Product Lines</h4>
+          <ul class="footer-links">
+            <li><a href="#bestsellers" onclick="window.filterCategory('sunscreen')">Aqua Gel Sunscreen SPF 50+</a></li>
+            <li><a href="#bestsellers" onclick="window.filterCategory('serums')">Brightening Vitamin C 20%</a></li>
+            <li><a href="#bestsellers" onclick="window.filterCategory('serums')">Collagen Peptide Serum</a></li>
+            <li><a href="#bestsellers" onclick="window.filterCategory('serums')">Kojic Acid Dark Spot Elixir</a></li>
+            <li><a href="#bestsellers" onclick="window.filterCategory('cleansers')">Glutathione Radiance Cleanser</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="#routineFinder">Custom Routine Finder</a></li>
+            <li><a href="javascript:void(0)" onclick="window.openCart()">Track Order Status</a></li>
+            <li><a href="javascript:void(0)">Shipping & Returns Policy</a></li>
+            <li><a href="javascript:void(0)">Dermatologist Consultation</a></li>
+            <li><a href="javascript:void(0)">Contact Bestie Support</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Safe & Verified Checkout</h4>
+          <p style="font-size:0.85rem;color:#9ca3af;margin-bottom:12px;">
+            Supports all major UPI methods (Google Pay, PhonePe, Paytm), Credit/Debit Cards, and Cash on Delivery.
+          </p>
+          <div style="font-size:1.6rem;display:flex;gap:12px;">
+            <span>💳</span>
+            <span>📱</span>
+            <span>🔒</span>
+            <span>🚚</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Bestie Cares. All Rights Reserved. Formulated with Love, Care, Compassion & Trust.</div>
+        <div>Dermatologically Tested • 100% Cruelty-Free • Made in India</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic -->
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
