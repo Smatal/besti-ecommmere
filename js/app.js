@@ -13,7 +13,7 @@ export const PRODUCTS = [
     concern: 'sun',
     skinType: 'all',
     subtitle: 'Broad Spectrum UVA • UVB Protection • Lightweight & Hydrating',
-    image: '/client_assets/sunscreen.jpg',
+    image: './client_assets/sunscreen.jpg',
     singlePrice: 499,
     singleMrp: 599,
     duoPrice: 799,
@@ -58,7 +58,7 @@ export const PRODUCTS = [
     concern: 'pigmentation',
     skinType: 'all',
     subtitle: 'Pure Antioxidant Glow • Fades Sun Tanning & Restores Luminosity',
-    image: '/client_assets/vitaminc.jpg',
+    image: './client_assets/vitaminc.jpg',
     singlePrice: 649,
     singleMrp: 799,
     duoPrice: 1099,
@@ -101,7 +101,7 @@ export const PRODUCTS = [
     concern: 'aging',
     skinType: 'dry',
     subtitle: 'Firms • Plumps • Enhances Elasticity for Bouncy, Youthful Skin',
-    image: '/client_assets/collagen.jpg',
+    image: './client_assets/collagen.jpg',
     singlePrice: 699,
     singleMrp: 899,
     duoPrice: 1199,
@@ -142,7 +142,7 @@ export const PRODUCTS = [
     concern: 'pigmentation',
     skinType: 'oily',
     subtitle: 'Fades Dark Spots • Evens Tone • Clears Post-Acne Blemishes',
-    image: '/client_assets/kojic.jpg',
+    image: './client_assets/kojic.jpg',
     singlePrice: 599,
     singleMrp: 749,
     duoPrice: 999,
@@ -183,7 +183,7 @@ export const PRODUCTS = [
     concern: 'undereye',
     skinType: 'all',
     subtitle: 'Depuff • Brighten • Refresh with 360° Stainless Steel Massage Ball',
-    image: '/client_assets/undereye.jpg',
+    image: './client_assets/undereye.jpg',
     singlePrice: 449,
     singleMrp: 549,
     duoPrice: 749,
@@ -224,7 +224,7 @@ export const PRODUCTS = [
     concern: 'dullness',
     skinType: 'all',
     subtitle: 'Brighten • Cleans • Glow • Non-Stripping Radiance Micro-Lather',
-    image: '/client_assets/facewash.jpg',
+    image: './client_assets/facewash.jpg',
     singlePrice: 399,
     singleMrp: 499,
     duoPrice: 699,
@@ -265,7 +265,7 @@ export const PRODUCTS = [
     concern: 'dryness',
     skinType: 'dry',
     subtitle: 'Hydrates • Nourishes • Softens • 24H Deep Barrier Repair',
-    image: '/client_assets/lotion.jpg',
+    image: './client_assets/lotion.jpg',
     singlePrice: 549,
     singleMrp: 699,
     duoPrice: 949,
@@ -306,7 +306,7 @@ export const PRODUCTS = [
     concern: 'dandruff',
     skinType: 'all',
     subtitle: 'Deep Clean • Flake Free • Healthy Hair with Ciclopirox & Tea Tree',
-    image: '/client_assets/shampoo.jpg',
+    image: './client_assets/shampoo.jpg',
     singlePrice: 499,
     singleMrp: 649,
     duoPrice: 849,
@@ -347,7 +347,7 @@ export const PRODUCTS = [
     concern: 'frizz',
     skinType: 'all',
     subtitle: 'Soft Hair • Easy Comb • Silky Shine & 72H Frizz Defense',
-    image: '/client_assets/conditioner.jpg',
+    image: './client_assets/conditioner.jpg',
     singlePrice: 479,
     singleMrp: 599,
     duoPrice: 799,
@@ -531,7 +531,7 @@ class BestieCaresStore {
         product: {
           name: bundle.title,
           subtitle: bundle.itemNames,
-          image: PRODUCTS.find(p => p.id === bundle.items[0])?.image || '/client_assets/sunscreen.jpg'
+          image: PRODUCTS.find(p => p.id === bundle.items[0])?.image || './client_assets/sunscreen.jpg'
         },
         packLabel: `Curated Kit + ${bundle.freebie}`,
         price: bundle.price,
@@ -892,8 +892,8 @@ export function renderDedicatedPdp(productId) {
             <div class="thumb-box active" onclick="document.getElementById('pdpMainImage').src='${product.image}'">
               <img src="${product.image}" alt="Packshot" />
             </div>
-            <div class="thumb-box" onclick="document.getElementById('pdpMainImage').src='/client_assets/video_thumb.jpg'">
-              <img src="/client_assets/video_thumb.jpg" alt="Texture Swatch" />
+            <div class="thumb-box" onclick="document.getElementById('pdpMainImage').src='./client_assets/video_thumb.jpg'">
+              <img src="./client_assets/video_thumb.jpg" alt="Texture Swatch" />
             </div>
           </div>
         </div>

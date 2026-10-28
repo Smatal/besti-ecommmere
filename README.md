@@ -60,13 +60,16 @@ npm run preview
 
 ```
 besti-ecommmere/
-├── client_assets/       # Product images, badges, and videos
+├── client_assets/       # Direct static media assets
 ├── css/
 │   └── style.css        # Core styling, responsive design & design tokens
 ├── js/
 │   └── app.js           # State manager, product catalog, cart & checkout logic
+├── public/
+│   └── client_assets/   # Public asset pipeline for production builds
 ├── index.html           # Main HTML document and storefront layout
 ├── package.json         # Project metadata and dependencies
+├── vite.config.js       # Vite build & asset configuration
 └── README.md            # Project documentation
 ```
 
