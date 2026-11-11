@@ -1,0 +1,171 @@
+generator client {
+  provider   = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+enum PaymentMethod {
+  UPI
+  CARD
+  COD
+}
+
+model Customer {
+  id        String   @id @default(uuid())
+  email     String?  @unique
+  phone     String   @unique
+  name      String
+  isGuest   Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  addresses         Address[]
+  orders            Order[]
+  couponRedemptions CouponRedemption[]
+
+  @@index([phone])
+  @@index([email])
+  @@map("customers")
+}
+
+model Address {
+  id           String   @id @default(uuid())
+  customerId   String
+  customer     Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  recipientName String
+  phoneNumber  String
+  addressLine1 String
+  addressLine2 String?
+  city         String
+  state        String?
+  postalCode   String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  orders Order[]
+
+  @@index([customerId])
+  @@map("addresses")
+}
+
+model Order {
+  id             String        @id
+  customerId     String
+  customer       Customer      @relation(fields: [customerId], references: [id])
+  addressId      String
+  address        Address       @relation(fields: [addressId], references: [id])
+  
+  subtotal       Int
+  discountAmount Int           @default(0)
+  shippingFee    Int           @default(0)
+  totalAmount    Int
+  
+  couponCode     String?
+  status         OrderStatus   @default(PENDING)
+  paymentMethod  PaymentMethod
+  paymentStatus  PaymentStatus @default(PENDING)
+  notes          String?
+
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  items          OrderItem[]
+  payment        Payment?
+  couponRedemption CouponRedemption?
+
+  @@index([customerId])
+  @@index([status])
+  @@map("orders")
+}
+
+model OrderItem {
+  id          String   @id @default(uuid())
+  orderId     String
+  order       Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  
+  productId   String   // The canonical product ID (e.g. "sunscreen", "vitaminc", "bundle-glow")
+  productName String
+  packType    String   // "single" | "duo" | "kit"
+  unitPrice   Int
+  quantity    Int
+  totalPrice  Int
+
+  createdAt   DateTime @default(now())
+
+  @@index([orderId])
+  @@index([productId])
+  @@map("order_items")
+}
+
+model Coupon {
+  id              String    @id @default(uuid())
+  code            String    @unique
+  discountPercent Int?
+  flatDiscount    Int?
+  minOrderValue   Int       @default(0)
+  maxDiscount     Int?
+  maxUses         Int?
+  currentUses     Int       @default(0)
+  isActive        Boolean   @default(true)
+  expiresAt       DateTime?
+  createdAt       DateTime  @default(now())
+
+  redemptions     CouponRedemption[]
+
+  @@index([code])
+  @@map("coupons")
+}
+
+model CouponRedemption {
+  id              String   @id @default(uuid())
+  couponId        String
+  coupon          Coupon   @relation(fields: [couponId], references: [id])
+  customerId      String
+  customer        Customer @relation(fields: [customerId], references: [id])
+  orderId         String   @unique
+  order           Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  discountApplied Int
+  redeemedAt      DateTime @default(now())
+
+  @@index([couponId])
+  @@index([customerId])
+  @@map("coupon_redemptions")
+}
+
+model Payment {
+  id                 String        @id @default(uuid())
+  orderId            String        @unique
+  order              Order         @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  
+  razorpayOrderId    String?       @unique
+  razorpayPaymentId  String?
+  razorpaySignature  String?
+  amount             Int
+  currency           String        @default("INR")
+  status             PaymentStatus @default(PENDING)
+  method             PaymentMethod
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+
+  @@index([razorpayOrderId])
+  @@map("payments")
+}
