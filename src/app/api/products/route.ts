@@ -1,22 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PRODUCTS, BUNDLE_KITS } from "@/shared/data/products";
+import { SanityCatalogService } from "@/backend/services/sanity.service";
 import { apiSuccess } from "@/shared/types/api.types";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
-  const category = searchParams.get("category");
+  const category = searchParams.get("category") || undefined;
 
-  const products = category && category !== "all"
-    ? PRODUCTS.filter((p) => p.category === category)
-    : PRODUCTS;
+  const [products, bundles, categories] = await Promise.all([
+    SanityCatalogService.getProducts(category),
+    SanityCatalogService.getBundles(),
+    SanityCatalogService.getCategories(),
+  ]);
 
   return NextResponse.json(
     apiSuccess({
       products,
-      bundles: BUNDLE_KITS,
+      bundles,
+      categories,
       total: products.length,
     }),
     { status: 200 }
   );
 }
-

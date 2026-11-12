@@ -1,4 +1,5 @@
 import { PRODUCTS, BUNDLE_KITS } from "@/shared/data/products";
+import { SanityCatalogService } from "@/backend/services/sanity.service";
 import { CheckoutRequestInput } from "@/shared/schemas/checkout.schema";
 import { CustomerRepository } from "@/backend/repositories/customer.repository";
 import { OrderRepository, CreateOrderItemData } from "@/backend/repositories/order.repository";
@@ -17,9 +18,9 @@ export class OrderService {
     const verifiedItems: CreateOrderItemData[] = [];
     let subtotal = 0;
 
-    // 1. Resolve standard product items by ID
+    // 1. Resolve standard product items by ID (queries Sanity with static fallback)
     for (const item of input.items) {
-      const product = PRODUCTS.find((p) => p.id === item.productId);
+      const product = await SanityCatalogService.getProductById(item.productId);
       if (!product) {
         throw new Error(`Product not found for ID: ${item.productId}`);
       }
@@ -41,7 +42,8 @@ export class OrderService {
 
     // 2. Resolve bundle kit if provided by ID
     if (input.bundleId) {
-      const bundle = BUNDLE_KITS.find((b) => b.id === input.bundleId);
+      const bundles = await SanityCatalogService.getBundles();
+      const bundle = bundles.find((b) => b.id === input.bundleId) || BUNDLE_KITS.find((b) => b.id === input.bundleId);
       if (bundle) {
         subtotal += bundle.price;
         verifiedItems.push({

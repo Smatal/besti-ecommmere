@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PRODUCTS } from "@/shared/data/products";
+import { SanityCatalogService } from "@/backend/services/sanity.service";
 import { CouponService } from "@/backend/services/coupon.service";
 import { apiSuccess, apiError } from "@/shared/types/api.types";
 import { z } from "zod";
@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
     // Calculate subtotal server-side strictly from product IDs
     let subtotal = 0;
     for (const item of items) {
-      const product = PRODUCTS.find((p) => p.id === item.productId);
+      const product = await SanityCatalogService.getProductById(item.productId);
       if (product) {
         const price = item.packType === "duo" ? product.duoPrice : product.singlePrice;
         subtotal += price * item.quantity;
