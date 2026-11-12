@@ -20,3 +20,4 @@ export default defineConfig({
     visionTool({ defaultApiVersion: "2024-01-01" }),
   ],
 });
+

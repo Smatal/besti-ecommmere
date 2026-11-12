@@ -8,3 +8,4 @@ export const isConfigured = Boolean(
   env.NEXT_PUBLIC_SANITY_PROJECT_ID !== "bestie-sample" &&
   env.NEXT_PUBLIC_SANITY_PROJECT_ID !== "dummy-project-id"
 );
+

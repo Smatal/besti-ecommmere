@@ -97,3 +97,4 @@ export class SanityCatalogService {
     return Array.from(unique.entries()).map(([id, name]) => ({ id, name }));
   }
 }
+

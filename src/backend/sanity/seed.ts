@@ -101,3 +101,4 @@ export async function seedSanity() {
 if (process.argv[1]?.includes("seed")) {
   seedSanity().catch(console.error);
 }
+
