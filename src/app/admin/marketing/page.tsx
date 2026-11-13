@@ -8,3 +8,4 @@ export default async function AdminMarketingPage() {
 
   return <CouponsClient coupons={coupons} />;
 }
+

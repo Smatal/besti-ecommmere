@@ -93,3 +93,4 @@ export function CategoryFormModal({ isOpen, onClose, onSuccess }: CategoryFormMo
     </div>
   );
 }
+

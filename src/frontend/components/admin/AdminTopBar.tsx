@@ -46,3 +46,4 @@ export function AdminTopBar({ onToggleMobileMenu }: { onToggleMobileMenu?: () =>
     </header>
   );
 }
+

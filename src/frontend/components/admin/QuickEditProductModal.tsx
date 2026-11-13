@@ -22,6 +22,7 @@ export function QuickEditProductModal({
   const [singleMrp, setSingleMrp] = useState(String(product.singleMrp || 0));
   const [categoryName, setCategoryName] = useState(product.categoryName || "");
   const [subtitle, setSubtitle] = useState(product.subtitle || "");
+  const [description, setDescription] = useState(product.description || "");
   const [badge, setBadge] = useState(product.badge || "");
   const [isPending, startTransition] = useTransition();
 
@@ -36,6 +37,7 @@ export function QuickEditProductModal({
         singleMrp: Number(singleMrp),
         categoryName,
         subtitle,
+        description,
         badge,
       });
 
@@ -142,6 +144,20 @@ export function QuickEditProductModal({
                 disabled={isPending}
               />
             </div>
+
+            <div>
+              <label style={{ display: "block", fontSize: "0.8rem", fontWeight: 600, marginBottom: "4px" }}>
+                Clinical Product Description (PDP)
+              </label>
+              <textarea
+                className="admin-input"
+                style={{ height: "90px", padding: "8px 12px", resize: "vertical" }}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                disabled={isPending}
+                placeholder="Detailed clinical mechanism of action and skin benefits..."
+              />
+            </div>
           </div>
 
           <div className="admin-modal-footer">
@@ -162,3 +178,4 @@ export function QuickEditProductModal({
     </div>
   );
 }
+

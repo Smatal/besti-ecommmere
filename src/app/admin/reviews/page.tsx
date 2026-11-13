@@ -8,3 +8,4 @@ export default async function AdminReviewsPage() {
 
   return <ReviewsTableClient reviews={reviews} />;
 }
+

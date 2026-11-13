@@ -187,3 +187,4 @@ export function CouponFormModal({ isOpen, onClose, onSuccess }: CouponFormModalP
     </div>
   );
 }
+

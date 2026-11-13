@@ -160,3 +160,4 @@ export function ReviewsTableClient({ reviews }: { reviews: ReviewItem[] }) {
     </div>
   );
 }
+

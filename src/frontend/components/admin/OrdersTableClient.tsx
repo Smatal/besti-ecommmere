@@ -406,3 +406,4 @@ export function OrdersTableClient({ orders }: { orders: OrderWithDetails[] }) {
     </div>
   );
 }
+

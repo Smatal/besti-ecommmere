@@ -555,3 +555,4 @@ export function ProductTableClient({ products }: { products: AdminProductView[] 
     </div>
   );
 }
+

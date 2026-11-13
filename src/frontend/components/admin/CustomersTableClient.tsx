@@ -146,3 +146,4 @@ export function CustomersTableClient({ customers }: { customers: AdminCustomerVi
     </div>
   );
 }
+

@@ -8,3 +8,4 @@ export default async function AdminCategoriesPage() {
 
   return <CategoriesClient categories={categories} />;
 }
+

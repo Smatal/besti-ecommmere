@@ -169,3 +169,4 @@ export function CouponsClient({ coupons }: { coupons: CouponItem[] }) {
     </div>
   );
 }
+

@@ -8,3 +8,4 @@ export default async function AdminCustomersPage() {
 
   return <CustomersTableClient customers={customers} />;
 }
+

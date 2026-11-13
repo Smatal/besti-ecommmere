@@ -39,3 +39,4 @@ export async function adminUpdateSetting(key: string, value: string) {
     return { success: false, error: error.message || "Failed to update setting" };
   }
 }
+

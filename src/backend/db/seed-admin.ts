@@ -75,3 +75,4 @@ async function seedAdminData() {
 seedAdminData()
   .catch(console.error)
   .finally(() => process.exit(0));
+

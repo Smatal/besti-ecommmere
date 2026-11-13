@@ -112,3 +112,4 @@ export function CategoriesClient({ categories }: { categories: AdminCategoryItem
     </div>
   );
 }
+

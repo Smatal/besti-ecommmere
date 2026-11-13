@@ -241,3 +241,4 @@ export function InventoryTableClient({ items }: { items: AdminInventoryItem[] })
     </div>
   );
 }
+

@@ -13,6 +13,8 @@ export interface AdminProductView {
   category: string;
   categoryName: string;
   subtitle?: string;
+  description?: string;
+  actives?: string;
   image: string;
   singlePrice: number;
   singleMrp: number;
@@ -60,6 +62,7 @@ export async function adminQuickEditProduct(
     singleMrp?: number;
     categoryName?: string;
     subtitle?: string;
+    description?: string;
     badge?: string;
   }
 ) {
@@ -76,6 +79,7 @@ export async function adminQuickEditProduct(
       };
     }
     if (data.subtitle !== undefined) patchData.subtitle = data.subtitle.trim();
+    if (data.description !== undefined) patchData.description = data.description.trim();
     if (data.badge !== undefined) patchData.badge = data.badge.trim();
 
     await writeClient.patch(sanityDocId).set(patchData).commit();
@@ -186,3 +190,4 @@ export async function adminBulkUpdateCategory(docIds: string[], categoryName: st
     return { success: false, error: error.message || "Failed to bulk update category" };
   }
 }
+

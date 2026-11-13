@@ -25,3 +25,4 @@ export default function AdminStudioPage() {
     </div>
   );
 }
+
