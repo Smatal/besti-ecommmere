@@ -1,10 +1,11 @@
 'use client';
 
 import React from 'react';
-import { BUNDLE_KITS, PRODUCTS } from '@/shared/data/products';
+import { useCatalog } from '@/frontend/context/CatalogContext';
 import { useCart } from '@/frontend/context/CartContext';
 
 export function BundleKitsSection() {
+  const { bundles, getProductById } = useCatalog();
   const { addBundleToCart } = useCart();
 
   return (
@@ -20,9 +21,9 @@ export function BundleKitsSection() {
         </div>
 
         <div className="bundle-kits-grid" id="bundleKitsGrid">
-          {BUNDLE_KITS.map((bundle) => {
+          {bundles.map((bundle) => {
             const productImgs = bundle.items
-              .map((id) => PRODUCTS.find((p) => p.id === id)?.image)
+              .map((id) => getProductById(id)?.image)
               .filter(Boolean) as string[];
 
             return (

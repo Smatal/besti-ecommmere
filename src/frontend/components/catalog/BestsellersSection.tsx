@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Product } from '@/shared/types/product';
-import { PRODUCTS } from '@/shared/data/products';
+import { useCatalog } from '@/frontend/context/CatalogContext';
 import { ProductCard } from './ProductCard';
 
 interface BestsellersSectionProps {
@@ -10,15 +10,16 @@ interface BestsellersSectionProps {
 }
 
 export function BestsellersSection({ initialCategory = 'all' }: BestsellersSectionProps) {
+  const { products } = useCatalog();
   const [activeCategory, setActiveCategory] = useState(initialCategory);
 
   const filteredProducts =
     activeCategory === 'all'
-      ? PRODUCTS
-      : PRODUCTS.filter((p) => {
+      ? products
+      : products.filter((p) => {
           if (activeCategory === 'sunscreen') return p.category === 'sunscreen';
-          if (activeCategory === 'serums' || activeCategory === 'serum') return p.category === 'serum';
-          if (activeCategory === 'cleansers') return p.category === 'facewash' || p.category === 'lotion';
+          if (activeCategory === 'serums' || activeCategory === 'serum') return p.category === 'serums' || p.category === 'serum';
+          if (activeCategory === 'cleansers') return p.category === 'cleansers' || p.category === 'facewash' || p.category === 'lotion';
           if (activeCategory === 'haircare') return p.category === 'haircare';
           return p.category === activeCategory;
         });

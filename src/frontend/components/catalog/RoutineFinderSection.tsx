@@ -2,10 +2,11 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Product } from '@/shared/types/product';
-import { PRODUCTS } from '@/shared/data/products';
+import { useCatalog } from '@/frontend/context/CatalogContext';
 import { useCart } from '@/frontend/context/CartContext';
 
 export function RoutineFinderSection() {
+  const { products } = useCatalog();
   const { openPdp, addToCart } = useCart();
   const [activeMenu, setActiveMenu] = useState<'product' | 'concern' | 'skintype' | null>(null);
 
@@ -46,12 +47,12 @@ export function RoutineFinderSection() {
   };
 
   const runFinder = () => {
-    const matches = PRODUCTS.filter((p) => {
+    const matches = products.filter((p) => {
       const catMatch =
         selectedProduct.val === 'all' ||
         p.category === selectedProduct.val ||
-        (selectedProduct.val === 'serums' && p.category === 'serum') ||
-        (selectedProduct.val === 'cleansers' && (p.category === 'facewash' || p.category === 'lotion'));
+        (selectedProduct.val === 'serums' && (p.category === 'serums' || p.category === 'serum')) ||
+        (selectedProduct.val === 'cleansers' && (p.category === 'cleansers' || p.category === 'facewash' || p.category === 'lotion'));
       const conMatch = selectedConcern.val === 'all' || p.concern === selectedConcern.val;
       const skinMatch =
         selectedSkinType.val === 'all' ||

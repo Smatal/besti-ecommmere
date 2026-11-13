@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import { Outfit, Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
+import { CatalogProvider } from '@/frontend/context/CatalogContext';
 import { CartProvider } from '@/frontend/context/CartContext';
 import { ClientModals } from '@/frontend/components/ClientModals';
+import { SanityCatalogService } from '@/backend/services/sanity.service';
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -24,18 +26,30 @@ export const metadata: Metadata = {
     'Bestie Cares provides clinic-grade, science-backed skin and hair care solutions designed for longevity, clarity, and glowing confidence.',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [products, bundles, categories] = await Promise.all([
+    SanityCatalogService.getProducts(),
+    SanityCatalogService.getBundles(),
+    SanityCatalogService.getCategories(),
+  ]);
+
   return (
     <html lang="en" className={`${outfit.variable} ${plusJakartaSans.variable}`}>
       <body>
-        <CartProvider>
-          {children}
-          <ClientModals />
-        </CartProvider>
+        <CatalogProvider
+          initialProducts={products}
+          initialBundles={bundles}
+          initialCategories={categories}
+        >
+          <CartProvider>
+            {children}
+            <ClientModals />
+          </CartProvider>
+        </CatalogProvider>
       </body>
     </html>
   );

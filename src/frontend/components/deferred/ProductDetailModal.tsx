@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
-import { PRODUCTS } from '@/shared/data/products';
+import { useCatalog } from '@/frontend/context/CatalogContext';
 import { useCart } from '@/frontend/context/CartContext';
 
 export function ProductDetailModal() {
+  const { products, getProductById } = useCatalog();
   const { activePdpId, closePdp, addToCart, openCheckout, selectedPack, setSelectedPackForProduct } =
     useCart();
 
@@ -18,7 +19,7 @@ export function ProductDetailModal() {
 
   if (!activePdpId) return null;
 
-  const product = PRODUCTS.find((p) => p.id === activePdpId) || PRODUCTS[0];
+  const product = getProductById(activePdpId) || products[0];
   if (!product) return null;
 
   const currentPack = selectedPack[product.id] || 'single';

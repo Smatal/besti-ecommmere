@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { Product, BundleKit } from '@/shared/types/product';
-import { PRODUCTS, BUNDLE_KITS } from '@/shared/data/products';
+import { useCatalog } from './CatalogContext';
 
 export interface CartItemModel {
   id: string;
@@ -58,6 +58,7 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: ReactNode }) {
+  const { products, getProductById, getBundleById } = useCatalog();
   const [cart, setCart] = useState<CartItemModel[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
@@ -67,10 +68,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [isMounted, setIsMounted] = useState(false);
 
-  // Initialize packs
+  // Initialize packs from catalog
   useEffect(() => {
     const initialPacks: Record<string, 'single' | 'duo'> = {};
-    PRODUCTS.forEach((p) => {
+    products.forEach((p) => {
       initialPacks[p.id] = 'single';
     });
     setSelectedPack(initialPacks);
@@ -84,7 +85,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       // ignore
     }
     setIsMounted(true);
-  }, []);
+  }, [products]);
 
   // Save cart
   useEffect(() => {
@@ -119,7 +120,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   const addToCart = (productId: string, packType?: 'single' | 'duo') => {
-    const product = PRODUCTS.find((p) => p.id === productId);
+    const product = getProductById(productId);
     if (!product) return;
 
     const chosenPack = packType || selectedPack[productId] || 'single';
@@ -163,7 +164,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   const addBundleToCart = (bundleId: string) => {
-    const bundle = BUNDLE_KITS.find((b) => b.id === bundleId);
+    const bundle = getBundleById(bundleId);
     if (!bundle) return;
 
     setCart((prev) => {
@@ -176,7 +177,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         }
         return next;
       } else {
-        const firstProduct = PRODUCTS.find((p) => p.id === bundle.items[0]);
+        const firstProduct = bundle.items[0] ? getProductById(bundle.items[0]) : undefined;
         return [
           ...prev,
           {
