@@ -66,3 +66,4 @@ export function useCatalog(): CatalogContextValue {
   }
   return context;
 }
+

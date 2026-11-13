@@ -41,6 +41,7 @@ model Customer {
   addresses         Address[]
   orders            Order[]
   couponRedemptions CouponRedemption[]
+  returns           Return[]
 
   @@index([phone])
   @@index([email])
@@ -91,6 +92,7 @@ model Order {
   items          OrderItem[]
   payment        Payment?
   couponRedemption CouponRedemption?
+  returns        Return[]
 
   @@index([customerId])
   @@index([status])
@@ -168,4 +170,137 @@ model Payment {
 
   @@index([razorpayOrderId])
   @@map("payments")
+}
+
+// -----------------------------------------------------------------------------
+// ADMIN & STORE MANAGEMENT DOMAIN
+// -----------------------------------------------------------------------------
+
+enum AdminRole {
+  SUPER_ADMIN
+  ADMIN
+  FULFILLMENT
+}
+
+model AdminUser {
+  id          String     @id @default(uuid())
+  email       String     @unique
+  name        String
+  password    String     // Hashed credentials
+  role        AdminRole  @default(ADMIN)
+  isActive    Boolean    @default(true)
+  lastLoginAt DateTime?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  auditLogs   AuditLog[]
+
+  @@map("admin_users")
+}
+
+model Inventory {
+  id                  String   @id @default(uuid())
+  productId           String   @unique // Matches Sanity product ID (e.g. "sunscreen")
+  availableStock      Int      @default(100)
+  reservedStock       Int      @default(0)
+  lowStockThreshold   Int      @default(15)
+  updatedAt           DateTime @updatedAt
+
+  @@index([productId])
+  @@map("inventories")
+}
+
+enum ReviewStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model Review {
+  id            String       @id @default(uuid())
+  productId     String       // Sanity product ID
+  customerId    String?
+  customerName  String
+  rating        Int          @default(5)
+  title         String?
+  comment       String
+  status        ReviewStatus @default(PENDING)
+  verifiedBuyer Boolean      @default(true)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@index([productId])
+  @@index([status])
+  @@map("reviews")
+}
+
+enum ReturnStatus {
+  REQUESTED
+  APPROVED
+  RECEIVED
+  REFUNDED
+  REJECTED
+}
+
+model Return {
+  id           String       @id @default(uuid())
+  orderId      String
+  order        Order        @relation(fields: [orderId], references: [id])
+  customerId   String
+  customer     Customer     @relation(fields: [customerId], references: [id])
+  reason       String
+  status       ReturnStatus @default(REQUESTED)
+  refundAmount Int          @default(0)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  items        ReturnItem[]
+
+  @@index([orderId])
+  @@index([customerId])
+  @@map("returns")
+}
+
+model ReturnItem {
+  id          String   @id @default(uuid())
+  returnId    String
+  return      Return   @relation(fields: [returnId], references: [id], onDelete: Cascade)
+  orderItemId String
+  quantity    Int      @default(1)
+  reason      String?
+
+  @@index([returnId])
+  @@map("return_items")
+}
+
+model StoreSetting {
+  id          String   @id @default(uuid())
+  key         String   @unique
+  value       String
+  label       String
+  description String?
+  group       String   @default("general") // general, shipping, payments, email, social
+  isMultiline Boolean  @default(false)
+  updatedAt   DateTime @updatedAt
+  updatedBy   String?
+
+  @@index([key])
+  @@index([group])
+  @@map("store_settings")
+}
+
+model AuditLog {
+  id          String     @id @default(uuid())
+  adminUserId String?
+  adminUser   AdminUser? @relation(fields: [adminUserId], references: [id], onDelete: SetNull)
+  action      String     // e.g. "ORDER_STATUS_CHANGED", "STOCK_ADJUSTED", "COUPON_CREATED"
+  summary     String
+  entityType  String?    // "Order", "Product", "Coupon", "Inventory"
+  entityId    String?
+  details     Json?
+  createdAt   DateTime   @default(now())
+
+  @@index([adminUserId])
+  @@index([entityType, entityId])
+  @@map("audit_logs")
 }
