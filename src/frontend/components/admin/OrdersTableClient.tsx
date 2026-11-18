@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, Fragment } from "react";
 import { OrderStatusUpdater } from "./OrderStatusUpdater";
 import { OrderStatus, PaymentMethod, PaymentStatus } from "@prisma/client";
 import { Search, ChevronDown, ChevronUp, Package, MapPin, CreditCard } from "lucide-react";
@@ -172,8 +172,8 @@ export function OrdersTableClient({ orders }: { orders: OrderWithDetails[] }) {
                   });
 
                   return (
-                    <tbody key={order.id} style={{ borderBottom: "1px solid #e2e8f0" }}>
-                      <tr>
+                    <Fragment key={order.id}>
+                      <tr style={{ borderBottom: isExpanded ? "none" : "1px solid #e2e8f0" }}>
                         <td>
                           <button
                             type="button"
@@ -395,7 +395,7 @@ export function OrdersTableClient({ orders }: { orders: OrderWithDetails[] }) {
                           </td>
                         </tr>
                       )}
-                    </tbody>
+                    </Fragment>
                   );
                 })
               )}
