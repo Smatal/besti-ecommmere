@@ -143,14 +143,14 @@ export function OrdersTableClient({ orders }: { orders: OrderWithDetails[] }) {
           <table className="admin-table">
             <thead>
               <tr>
-                <th style={{ width: "32px" }}></th>
-                <th>Order ID</th>
-                <th>Customer</th>
-                <th>Total</th>
-                <th>Payment</th>
-                <th>Status Transition</th>
-                <th>Items</th>
-                <th>Created</th>
+                <th style={{ width: "36px", textAlign: "center", padding: "12px 6px" }}></th>
+                <th style={{ width: "110px", whiteSpace: "nowrap" }}>Order ID</th>
+                <th style={{ minWidth: "140px" }}>Customer</th>
+                <th style={{ width: "95px", whiteSpace: "nowrap" }}>Total</th>
+                <th style={{ width: "125px", whiteSpace: "nowrap" }}>Payment</th>
+                <th style={{ minWidth: "195px", whiteSpace: "nowrap" }}>Status Transition</th>
+                <th style={{ width: "75px", textAlign: "center", whiteSpace: "nowrap" }}>Items</th>
+                <th style={{ width: "125px", whiteSpace: "nowrap" }}>Created</th>
               </tr>
             </thead>
             <tbody>
@@ -163,60 +163,77 @@ export function OrdersTableClient({ orders }: { orders: OrderWithDetails[] }) {
               ) : (
                 filteredOrders.map((order) => {
                   const isExpanded = expandedOrderId === order.id;
-                  const dateStr = new Date(order.createdAt).toLocaleDateString("en-IN", {
+                  const dateObj = new Date(order.createdAt);
+                  const dateFormatted = dateObj.toLocaleDateString("en-IN", {
                     day: "numeric",
                     month: "short",
                     year: "numeric",
+                  });
+                  const timeFormatted = dateObj.toLocaleTimeString("en-IN", {
                     hour: "2-digit",
                     minute: "2-digit",
                   });
 
                   return (
                     <Fragment key={order.id}>
-                      <tr style={{ borderBottom: isExpanded ? "none" : "1px solid #e2e8f0" }}>
-                        <td>
+                      <tr
+                        style={{
+                          borderBottom: isExpanded ? "none" : "1px solid #e2e8f0",
+                          backgroundColor: isExpanded ? "#f8fafc" : undefined,
+                        }}
+                      >
+                        <td style={{ textAlign: "center", width: "36px", padding: "14px 6px" }}>
                           <button
                             type="button"
                             onClick={() => toggleExpand(order.id)}
+                            aria-label={isExpanded ? "Collapse order details" : "Expand order details"}
                             style={{
                               cursor: "pointer",
-                              color: "#64748b",
-                              display: "flex",
+                              color: isExpanded ? "#0f766e" : "#64748b",
+                              display: "inline-flex",
                               alignItems: "center",
+                              justifyContent: "center",
+                              padding: "4px",
+                              borderRadius: "4px",
+                              border: "none",
+                              background: "transparent",
                             }}
                           >
                             {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                           </button>
                         </td>
-                        <td style={{ fontWeight: 700, color: "#0f766e" }}>{order.id}</td>
+                        <td style={{ fontWeight: 700, color: "#0f766e", whiteSpace: "nowrap" }}>
+                          {order.id}
+                        </td>
                         <td>
                           <div style={{ fontWeight: 600 }}>{order.customer.name}</div>
                           <div style={{ fontSize: "0.75rem", color: "#64748b" }}>
                             {order.customer.phone}
                           </div>
                         </td>
-                        <td style={{ fontWeight: 700 }}>
+                        <td style={{ fontWeight: 700, whiteSpace: "nowrap" }}>
                           ₹{order.totalAmount.toLocaleString("en-IN")}
                           {order.discountAmount > 0 && (
-                            <div style={{ fontSize: "0.72rem", color: "#15803d" }}>
+                            <div style={{ fontSize: "0.72rem", color: "#15803d", fontWeight: 500 }}>
                               Save ₹{order.discountAmount} ({order.couponCode})
                             </div>
                           )}
                         </td>
-                        <td>
-                          <span className="admin-badge admin-badge-slate">
-                            {order.paymentMethod}
-                          </span>
-                          <span
-                            className={`admin-badge ${
-                              order.paymentStatus === "PAID"
-                                ? "admin-badge-success"
-                                : "admin-badge-warning"
-                            }`}
-                            style={{ marginLeft: "4px" }}
-                          >
-                            {order.paymentStatus}
-                          </span>
+                        <td style={{ whiteSpace: "nowrap" }}>
+                          <div style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
+                            <span className="admin-badge admin-badge-slate">
+                              {order.paymentMethod}
+                            </span>
+                            <span
+                              className={`admin-badge ${
+                                order.paymentStatus === "PAID"
+                                  ? "admin-badge-success"
+                                  : "admin-badge-warning"
+                              }`}
+                            >
+                              {order.paymentStatus}
+                            </span>
+                          </div>
                         </td>
                         <td>
                           <OrderStatusUpdater
@@ -224,18 +241,25 @@ export function OrdersTableClient({ orders }: { orders: OrderWithDetails[] }) {
                             currentStatus={order.status}
                           />
                         </td>
-                        <td>
+                        <td style={{ textAlign: "center", whiteSpace: "nowrap" }}>
                           <span className="admin-badge admin-badge-slate">
                             {order.items.reduce((sum, item) => sum + item.quantity, 0)} units
                           </span>
                         </td>
-                        <td style={{ fontSize: "0.78rem", color: "#64748b" }}>{dateStr}</td>
+                        <td style={{ whiteSpace: "nowrap" }}>
+                          <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155" }}>
+                            {dateFormatted}
+                          </div>
+                          <div style={{ fontSize: "0.72rem", color: "#94a3b8" }}>
+                            {timeFormatted}
+                          </div>
+                        </td>
                       </tr>
 
                       {/* Expandable Order Details Row */}
                       {isExpanded && (
-                        <tr>
-                          <td colSpan={8} style={{ backgroundColor: "#f8fafc", padding: "16px 24px" }}>
+                        <tr key={`${order.id}-details`}>
+                          <td colSpan={8} style={{ backgroundColor: "#f8fafc", padding: "16px 24px", borderBottom: "1px solid #e2e8f0" }}>
                             <div
                               style={{
                                 display: "grid",
