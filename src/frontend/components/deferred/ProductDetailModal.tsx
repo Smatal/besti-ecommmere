@@ -51,8 +51,14 @@ export function ProductDetailModal() {
     }
   };
 
+  const handleAddToCart = () => {
+    addToCart(product.id, currentPack);
+    closePdp();
+  };
+
   const handleBuyNow = () => {
     addToCart(product.id, currentPack);
+    closePdp();
     openCheckout();
   };
 
@@ -240,7 +246,7 @@ export function ProductDetailModal() {
               <button
                 className="btn btn-gold"
                 style={{ padding: '16px', fontSize: '1.05rem' }}
-                onClick={() => addToCart(product.id, currentPack)}
+                onClick={handleAddToCart}
               >
                 Add to Cart — ₹{currentPrice}
               </button>

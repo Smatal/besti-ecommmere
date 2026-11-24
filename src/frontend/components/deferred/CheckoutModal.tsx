@@ -93,7 +93,7 @@ export function CheckoutModal() {
 
   if (confirmedOrderId) {
     return (
-      <div className="pdp-modal active" id="orderSuccessModal">
+      <div className="checkout-modal-overlay" id="orderSuccessModal">
         <div
           className="pdp-modal-content"
           style={{ maxWidth: '460px', padding: '36px', textAlign: 'center' }}
@@ -175,7 +175,7 @@ export function CheckoutModal() {
   }
 
   return (
-    <div className="pdp-modal active" id="checkoutSheet">
+    <div className="checkout-modal-overlay" id="checkoutSheet">
       <div className="pdp-modal-content" style={{ maxWidth: '520px', padding: '32px' }}>
         <button className="pdp-close-btn" onClick={closeCheckout} disabled={isSubmitting}>
           ✕

@@ -1839,7 +1839,7 @@ input, select {
   inset: 0;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(4px);
-  z-index: 100;
+  z-index: 120;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -1859,7 +1859,7 @@ input, select {
   max-width: 440px;
   background: #ffffff;
   box-shadow: var(--shadow-drawer);
-  z-index: 110;
+  z-index: 125;
   display: flex;
   flex-direction: column;
   transform: translateX(100%);
@@ -2094,7 +2094,7 @@ input, select {
 .pdp-modal {
   position: fixed;
   inset: 0;
-  z-index: 120;
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2107,6 +2107,19 @@ input, select {
 .pdp-modal.active {
   opacity: 1;
   pointer-events: auto;
+}
+
+.checkout-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 140;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  overflow-y: auto;
 }
 
 .pdp-modal-content {
@@ -2239,7 +2252,7 @@ input, select {
   gap: 10px;
   box-shadow: var(--shadow-lg);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  z-index: 150;
+  z-index: 200;
   opacity: 0;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
