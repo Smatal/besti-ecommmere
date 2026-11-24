@@ -1727,8 +1727,15 @@ input, select {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
   margin-bottom: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.concern-card:hover .concern-icon-bubble {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
 .concern-title {
@@ -1754,6 +1761,12 @@ input, select {
   align-items: center;
   gap: 6px;
   margin-top: auto;
+  transition: var(--transition-smooth);
+}
+
+.concern-card:hover .concern-link {
+  color: var(--gold-primary);
+  transform: translateX(4px);
 }
 
 /* ==========================================================================

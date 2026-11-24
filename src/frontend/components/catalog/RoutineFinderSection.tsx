@@ -4,6 +4,21 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Product } from '@/shared/types/product';
 import { useCatalog } from '@/frontend/context/CatalogContext';
 import { useCart } from '@/frontend/context/CartContext';
+import {
+  Sparkles,
+  Sun,
+  FlaskConical,
+  Droplets,
+  Leaf,
+  Target,
+  Dna,
+  Eye,
+  Scissors,
+  Layers,
+  Heart,
+  Scale,
+  Feather,
+} from 'lucide-react';
 
 export function RoutineFinderSection() {
   const { products } = useCatalog();
@@ -92,35 +107,50 @@ export function RoutineFinderSection() {
                 className={`dropdown-item ${selectedProduct.val === 'all' ? 'active' : ''}`}
                 onClick={(e) => handleSelect('product', 'all', 'All Products', e)}
               >
-                <span className="item-text">✨ All Formulations</span>
+                <span className="item-text" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                  <Sparkles size={15} strokeWidth={2} style={{ color: 'var(--gold-dark)', flexShrink: 0 }} />
+                  <span>All Formulations</span>
+                </span>
                 <span className="item-check">✓</span>
               </div>
               <div
                 className={`dropdown-item ${selectedProduct.val === 'sunscreen' ? 'active' : ''}`}
                 onClick={(e) => handleSelect('product', 'sunscreen', 'Sunscreen', e)}
               >
-                <span className="item-text">☀️ Sunscreen (SPF 50+ PA++++)</span>
+                <span className="item-text" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                  <Sun size={15} strokeWidth={2} style={{ color: 'var(--gold-dark)', flexShrink: 0 }} />
+                  <span>Sunscreen (SPF 50+ PA++++)</span>
+                </span>
                 <span className="item-check">✓</span>
               </div>
               <div
                 className={`dropdown-item ${selectedProduct.val === 'serums' ? 'active' : ''}`}
                 onClick={(e) => handleSelect('product', 'serums', 'Face Serums', e)}
               >
-                <span className="item-text">🧪 Face Serums (Vit C, Collagen, Kojic)</span>
+                <span className="item-text" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                  <FlaskConical size={15} strokeWidth={2} style={{ color: 'var(--gold-dark)', flexShrink: 0 }} />
+                  <span>Face Serums (Vit C, Collagen, Kojic)</span>
+                </span>
                 <span className="item-check">✓</span>
               </div>
               <div
                 className={`dropdown-item ${selectedProduct.val === 'cleansers' ? 'active' : ''}`}
                 onClick={(e) => handleSelect('product', 'cleansers', 'Cleansers & Lotions', e)}
               >
-                <span className="item-text">🧴 Cleansers &amp; Lotions</span>
+                <span className="item-text" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                  <Droplets size={15} strokeWidth={2} style={{ color: 'var(--gold-dark)', flexShrink: 0 }} />
+                  <span>Cleansers &amp; Lotions</span>
+                </span>
                 <span className="item-check">✓</span>
               </div>
               <div
                 className={`dropdown-item ${selectedProduct.val === 'haircare' ? 'active' : ''}`}
                 onClick={(e) => handleSelect('product', 'haircare', 'Hair & Scalp Therapy', e)}
               >
-                <span className="item-text">🌿 Hair &amp; Scalp Therapy</span>
+                <span className="item-text" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                  <Leaf size={15} strokeWidth={2} style={{ color: 'var(--gold-dark)', flexShrink: 0 }} />
+                  <span>Hair &amp; Scalp Therapy</span>
+                </span>
                 <span className="item-check">✓</span>
               </div>
             </div>
@@ -144,56 +174,80 @@ export function RoutineFinderSection() {
                 className={`dropdown-item ${selectedConcern.val === 'all' ? 'active' : ''}`}
                 onClick={(e) => handleSelect('concern', 'all', 'All Concerns', e)}
               >
-                <span className="item-text">🎯 All Skin Concerns</span>
+                <span className="item-text" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                  <Target size={15} strokeWidth={2} style={{ color: 'var(--gold-dark)', flexShrink: 0 }} />
+                  <span>All Skin Concerns</span>
+                </span>
                 <span className="item-check">✓</span>
               </div>
               <div
                 className={`dropdown-item ${selectedConcern.val === 'sun' ? 'active' : ''}`}
                 onClick={(e) => handleSelect('concern', 'sun', 'Sun Protection & Tanning', e)}
               >
-                <span className="item-text">☀️ Sun Protection &amp; Tanning</span>
+                <span className="item-text" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                  <Sun size={15} strokeWidth={2} style={{ color: 'var(--gold-dark)', flexShrink: 0 }} />
+                  <span>Sun Protection &amp; Tanning</span>
+                </span>
                 <span className="item-check">✓</span>
               </div>
               <div
                 className={`dropdown-item ${selectedConcern.val === 'pigmentation' ? 'active' : ''}`}
                 onClick={(e) => handleSelect('concern', 'pigmentation', 'Dark Spots & Melasma', e)}
               >
-                <span className="item-text">✨ Dark Spots &amp; Melasma</span>
+                <span className="item-text" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                  <Sparkles size={15} strokeWidth={2} style={{ color: 'var(--gold-dark)', flexShrink: 0 }} />
+                  <span>Dark Spots &amp; Melasma</span>
+                </span>
                 <span className="item-check">✓</span>
               </div>
               <div
                 className={`dropdown-item ${selectedConcern.val === 'aging' ? 'active' : ''}`}
                 onClick={(e) => handleSelect('concern', 'aging', 'Fine Lines & Elasticity', e)}
               >
-                <span className="item-text">🧬 Fine Lines &amp; Elasticity</span>
+                <span className="item-text" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                  <Dna size={15} strokeWidth={2} style={{ color: 'var(--gold-dark)', flexShrink: 0 }} />
+                  <span>Fine Lines &amp; Elasticity</span>
+                </span>
                 <span className="item-check">✓</span>
               </div>
               <div
                 className={`dropdown-item ${selectedConcern.val === 'undereye' ? 'active' : ''}`}
                 onClick={(e) => handleSelect('concern', 'undereye', 'Dark Circles & Puffy Eyes', e)}
               >
-                <span className="item-text">👁️ Dark Circles &amp; Puffy Eyes</span>
+                <span className="item-text" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                  <Eye size={15} strokeWidth={2} style={{ color: 'var(--gold-dark)', flexShrink: 0 }} />
+                  <span>Dark Circles &amp; Puffy Eyes</span>
+                </span>
                 <span className="item-check">✓</span>
               </div>
               <div
                 className={`dropdown-item ${selectedConcern.val === 'dryness' ? 'active' : ''}`}
                 onClick={(e) => handleSelect('concern', 'dryness', 'Dry & Flaky Barrier', e)}
               >
-                <span className="item-text">💧 Dry &amp; Flaky Barrier</span>
+                <span className="item-text" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                  <Droplets size={15} strokeWidth={2} style={{ color: 'var(--gold-dark)', flexShrink: 0 }} />
+                  <span>Dry &amp; Flaky Barrier</span>
+                </span>
                 <span className="item-check">✓</span>
               </div>
               <div
                 className={`dropdown-item ${selectedConcern.val === 'dandruff' ? 'active' : ''}`}
                 onClick={(e) => handleSelect('concern', 'dandruff', 'Dandruff & Flakes', e)}
               >
-                <span className="item-text">🌿 Persistent Scalp Dandruff</span>
+                <span className="item-text" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                  <Leaf size={15} strokeWidth={2} style={{ color: 'var(--gold-dark)', flexShrink: 0 }} />
+                  <span>Persistent Scalp Dandruff</span>
+                </span>
                 <span className="item-check">✓</span>
               </div>
               <div
                 className={`dropdown-item ${selectedConcern.val === 'frizz' ? 'active' : ''}`}
                 onClick={(e) => handleSelect('concern', 'frizz', 'Frizzy & Tangled Hair', e)}
               >
-                <span className="item-text">💆 Frizzy &amp; Tangled Hair</span>
+                <span className="item-text" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                  <Scissors size={15} strokeWidth={2} style={{ color: 'var(--gold-dark)', flexShrink: 0 }} />
+                  <span>Frizzy &amp; Tangled Hair</span>
+                </span>
                 <span className="item-check">✓</span>
               </div>
             </div>
@@ -217,35 +271,50 @@ export function RoutineFinderSection() {
                 className={`dropdown-item ${selectedSkinType.val === 'all' ? 'active' : ''}`}
                 onClick={(e) => handleSelect('skintype', 'all', 'All Types', e)}
               >
-                <span className="item-text">🧴 All Skin / Hair Types</span>
+                <span className="item-text" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                  <Layers size={15} strokeWidth={2} style={{ color: 'var(--gold-dark)', flexShrink: 0 }} />
+                  <span>All Skin / Hair Types</span>
+                </span>
                 <span className="item-check">✓</span>
               </div>
               <div
                 className={`dropdown-item ${selectedSkinType.val === 'oily' ? 'active' : ''}`}
                 onClick={(e) => handleSelect('skintype', 'oily', 'Oily / Acne Prone', e)}
               >
-                <span className="item-text">🫧 Oily / Acne Prone</span>
+                <span className="item-text" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                  <Droplets size={15} strokeWidth={2} style={{ color: 'var(--gold-dark)', flexShrink: 0 }} />
+                  <span>Oily / Acne Prone</span>
+                </span>
                 <span className="item-check">✓</span>
               </div>
               <div
                 className={`dropdown-item ${selectedSkinType.val === 'dry' ? 'active' : ''}`}
                 onClick={(e) => handleSelect('skintype', 'dry', 'Dry / Dehydrated', e)}
               >
-                <span className="item-text">🌾 Dry / Dehydrated</span>
+                <span className="item-text" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                  <Feather size={15} strokeWidth={2} style={{ color: 'var(--gold-dark)', flexShrink: 0 }} />
+                  <span>Dry / Dehydrated</span>
+                </span>
                 <span className="item-check">✓</span>
               </div>
               <div
                 className={`dropdown-item ${selectedSkinType.val === 'sensitive' ? 'active' : ''}`}
                 onClick={(e) => handleSelect('skintype', 'sensitive', 'Sensitive / Reactive', e)}
               >
-                <span className="item-text">🌸 Sensitive / Reactive</span>
+                <span className="item-text" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                  <Heart size={15} strokeWidth={2} style={{ color: 'var(--gold-dark)', flexShrink: 0 }} />
+                  <span>Sensitive / Reactive</span>
+                </span>
                 <span className="item-check">✓</span>
               </div>
               <div
                 className={`dropdown-item ${selectedSkinType.val === 'combination' ? 'active' : ''}`}
                 onClick={(e) => handleSelect('skintype', 'combination', 'Combination Skin', e)}
               >
-                <span className="item-text">⚖️ Combination Skin</span>
+                <span className="item-text" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                  <Scale size={15} strokeWidth={2} style={{ color: 'var(--gold-dark)', flexShrink: 0 }} />
+                  <span>Combination Skin</span>
+                </span>
                 <span className="item-check">✓</span>
               </div>
             </div>

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useCart } from '@/frontend/context/CartContext';
+import { Sun, Sparkles, Dna, Eye, Leaf, Droplets, ArrowRight } from 'lucide-react';
 
 interface ConcernsSectionProps {
   onSelectCategory?: (category: string) => void;
@@ -45,15 +46,18 @@ export function ConcernsSection({ onSelectCategory }: ConcernsSectionProps) {
           >
             <div
               className="concern-icon-bubble"
-              style={{ background: 'var(--teal-subtle)', color: 'var(--teal-primary)' }}
+              style={{ background: 'var(--amber-subtle)', color: 'var(--amber-primary)' }}
             >
-              ☀️
+              <Sun size={24} strokeWidth={1.8} />
             </div>
             <h3 className="concern-title">Sun Tanning &amp; UV Rays</h3>
             <p className="concern-desc">
               High UVA/UVB defense with SPF 50+ PA++++ that leaves zero greasy residue or white cast.
             </p>
-            <span className="concern-link">View Sunscreen Solution →</span>
+            <span className="concern-link">
+              <span>View Sunscreen Solution</span>
+              <ArrowRight size={14} strokeWidth={2.2} />
+            </span>
           </div>
 
           {/* Pigmentation & Spots */}
@@ -66,14 +70,17 @@ export function ConcernsSection({ onSelectCategory }: ConcernsSectionProps) {
               className="concern-icon-bubble"
               style={{ background: 'var(--wine-subtle)', color: 'var(--wine-primary)' }}
             >
-              ✨
+              <Sparkles size={24} strokeWidth={1.8} />
             </div>
             <h3 className="concern-title">Dark Spots &amp; Melasma</h3>
             <p className="concern-desc">
               Potent 2% Kojic Acid and Vitamin C serums that visibly fade post-acne scars and uneven
               pigmentation.
             </p>
-            <span className="concern-link">View Brightening Serums →</span>
+            <span className="concern-link">
+              <span>View Brightening Serums</span>
+              <ArrowRight size={14} strokeWidth={2.2} />
+            </span>
           </div>
 
           {/* Anti-Aging & Loss of Bounce */}
@@ -86,14 +93,17 @@ export function ConcernsSection({ onSelectCategory }: ConcernsSectionProps) {
               className="concern-icon-bubble"
               style={{ background: 'var(--sapphire-subtle)', color: 'var(--sapphire-primary)' }}
             >
-              🧬
+              <Dna size={24} strokeWidth={1.8} />
             </div>
             <h3 className="concern-title">Fine Lines &amp; Sagging Skin</h3>
             <p className="concern-desc">
               Multi-peptide collagen booster that stimulates cellular repair and restores plump, firm
               skin bounce.
             </p>
-            <span className="concern-link">View Peptide Elixir →</span>
+            <span className="concern-link">
+              <span>View Peptide Elixir</span>
+              <ArrowRight size={14} strokeWidth={2.2} />
+            </span>
           </div>
 
           {/* Under Eye Bags & Dark Circles */}
@@ -104,16 +114,19 @@ export function ConcernsSection({ onSelectCategory }: ConcernsSectionProps) {
           >
             <div
               className="concern-icon-bubble"
-              style={{ background: 'rgba(23,24,28,0.08)', color: 'var(--text-primary)' }}
+              style={{ background: 'var(--berry-subtle)', color: 'var(--berry-primary)' }}
             >
-              👁️
+              <Eye size={24} strokeWidth={1.8} />
             </div>
             <h3 className="concern-title">Puffy Eyes &amp; Dark Circles</h3>
             <p className="concern-desc">
               Cooling stainless-steel roller applicator delivering caffeine &amp; hyaluronic acid
               micro-circulation.
             </p>
-            <span className="concern-link">View Under Eye Gel →</span>
+            <span className="concern-link">
+              <span>View Under Eye Gel</span>
+              <ArrowRight size={14} strokeWidth={2.2} />
+            </span>
           </div>
 
           {/* Dandruff & Scalp Flakes */}
@@ -124,16 +137,19 @@ export function ConcernsSection({ onSelectCategory }: ConcernsSectionProps) {
           >
             <div
               className="concern-icon-bubble"
-              style={{ background: 'var(--amber-subtle)', color: 'var(--amber-primary)' }}
+              style={{ background: 'var(--forest-subtle)', color: 'var(--forest-primary)' }}
             >
-              🌿
+              <Leaf size={24} strokeWidth={1.8} />
             </div>
             <h3 className="concern-title">Persistent Scalp Dandruff</h3>
             <p className="concern-desc">
               Clinical Ciclopirox Olamine + Tea Tree shampoo that eliminates dandruff without drying hair
               shafts.
             </p>
-            <span className="concern-link">View Scalp Therapy →</span>
+            <span className="concern-link">
+              <span>View Scalp Therapy</span>
+              <ArrowRight size={14} strokeWidth={2.2} />
+            </span>
           </div>
 
           {/* Dryness & Damaged Barrier */}
@@ -144,16 +160,19 @@ export function ConcernsSection({ onSelectCategory }: ConcernsSectionProps) {
           >
             <div
               className="concern-icon-bubble"
-              style={{ background: 'var(--berry-subtle)', color: 'var(--berry-primary)' }}
+              style={{ background: 'var(--teal-subtle)', color: 'var(--teal-primary)' }}
             >
-              💧
+              <Droplets size={24} strokeWidth={1.8} />
             </div>
             <h3 className="concern-title">Dry &amp; Flaky Skin Barrier</h3>
             <p className="concern-desc">
               Multi-ceramide and shea butter moisture lock for 24-hour hydration and silky smooth
               barrier repair.
             </p>
-            <span className="concern-link">View Ceramide Lotion →</span>
+            <span className="concern-link">
+              <span>View Ceramide Lotion</span>
+              <ArrowRight size={14} strokeWidth={2.2} />
+            </span>
           </div>
         </div>
       </div>
