@@ -140,9 +140,12 @@ export const product = defineType({
       group: "general",
       options: {
         list: [
-          { title: "Gold Badge", value: "badge-gold" },
-          { title: "Teal Badge", value: "badge-teal" },
-          { title: "Rose Badge", value: "badge-rose" },
+          { title: "Gold Badge (Luxury / Bestseller)", value: "badge-gold" },
+          { title: "Glow Blue Badge (Salon / Gloss / Hydro)", value: "badge-glow" },
+          { title: "Wine / Rose Badge (Berry / Treatment)", value: "badge-wine" },
+          { title: "Teal Badge (Clean / Clinical / New)", value: "badge-new" },
+          { title: "Derma Black & Gold Badge", value: "badge-derma" },
+          { title: "Red Sale Badge (Save / Offer)", value: "badge-save" },
         ],
       },
     }),

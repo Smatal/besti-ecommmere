@@ -45,7 +45,17 @@ export function ProductDetailModal() {
   const isDuo = currentPack === 'duo';
   const currentPrice = isDuo ? product.duoPrice : product.singlePrice;
   const currentMrp = isDuo ? product.duoMrp : product.singleMrp;
-  const discountPct = Math.round(((currentMrp - currentPrice) / currentMrp) * 100);
+  const discountPct =
+    currentMrp && currentPrice && currentMrp > currentPrice
+      ? Math.round(((currentMrp - currentPrice) / currentMrp) * 100)
+      : 0;
+
+  const duoSavingsPct =
+    product.duoMrp && product.duoPrice && product.duoMrp > product.duoPrice
+      ? Math.round(((product.duoMrp - product.duoPrice) / product.duoMrp) * 100)
+      : product.singlePrice && product.duoPrice && product.singlePrice * 2 > product.duoPrice
+      ? Math.round(((product.singlePrice * 2 - product.duoPrice) / (product.singlePrice * 2)) * 100)
+      : 0;
 
   const heroImage = selectedImg || product.image;
 
@@ -148,10 +158,12 @@ export function ProductDetailModal() {
           <div className="pdp-media-column">
             <div className="pdp-main-image-card">
               <div className="badge-corner">
-                <span className={`badge-pill ${product.badgeType}`}>{product.badge}</span>
-                <span className="badge-pill" style={{ background: '#0f766e', color: '#fff' }}>
-                  DERMATOLOGIST TESTED
-                </span>
+                {product.badge && (
+                  <span className={`badge-pill ${product.badgeType || 'badge-gold'}`}>{product.badge}</span>
+                )}
+                {discountPct > 0 && (
+                  <span className="badge-pill badge-save">SAVE {discountPct}%</span>
+                )}
               </div>
               <img src={heroImage} alt={product.name} className="pdp-hero-image" />
             </div>
@@ -246,7 +258,7 @@ export function ProductDetailModal() {
                   <div>
                     <strong style={{ color: 'var(--gold-dark)' }}>Pack of 2 (Duo Deal)</strong>
                     <span style={{ fontSize: '0.75rem', color: '#166534', fontWeight: 700, display: 'block' }}>
-                      SAVE 20% • ₹{Math.round(product.duoPrice / 2)}/each
+                      {duoSavingsPct > 0 ? `SAVE ${duoSavingsPct}% • ` : ''}₹{Math.round(product.duoPrice / 2)}/each
                     </span>
                   </div>
                   <div style={{ textAlign: 'right' }}>

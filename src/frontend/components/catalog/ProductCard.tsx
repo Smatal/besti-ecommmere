@@ -16,7 +16,17 @@ export function ProductCard({ product }: ProductCardProps) {
   const isDuo = chosenPack === 'duo';
   const currentPrice = isDuo ? product.duoPrice : product.singlePrice;
   const currentMrp = isDuo ? product.duoMrp : product.singleMrp;
-  const discountPct = Math.round(((currentMrp - currentPrice) / currentMrp) * 100);
+  const discountPct =
+    currentMrp && currentPrice && currentMrp > currentPrice
+      ? Math.round(((currentMrp - currentPrice) / currentMrp) * 100)
+      : 0;
+
+  const duoDiscountPct =
+    product.duoMrp && product.duoPrice && product.duoMrp > product.duoPrice
+      ? Math.round(((product.duoMrp - product.duoPrice) / product.duoMrp) * 100)
+      : product.singlePrice && product.duoPrice && product.singlePrice * 2 > product.duoPrice
+      ? Math.round(((product.singlePrice * 2 - product.duoPrice) / (product.singlePrice * 2)) * 100)
+      : 0;
 
   return (
     <article className="product-card" data-id={product.id}>
@@ -26,8 +36,10 @@ export function ProductCard({ product }: ProductCardProps) {
         style={{ cursor: 'pointer' }}
       >
         <div className="badge-corner">
-          <span className={`badge-pill ${product.badgeType}`}>{product.badge}</span>
-          <span className="badge-pill badge-save">SAVE {discountPct}%</span>
+          {product.badge && (
+            <span className={`badge-pill ${product.badgeType || 'badge-gold'}`}>{product.badge}</span>
+          )}
+          {discountPct > 0 && <span className="badge-pill badge-save">SAVE {discountPct}%</span>}
         </div>
         <img
           src={product.image}
@@ -90,14 +102,20 @@ export function ProductCard({ product }: ProductCardProps) {
             onClick={() => setSelectedPackForProduct(product.id, 'duo')}
           >
             Pack of 2 • ₹{product.duoPrice}{' '}
-            <span style={{ color: '#166534', fontSize: '0.65rem' }}>(-20%)</span>
+            {duoDiscountPct > 0 && (
+              <span style={{ color: '#166534', fontSize: '0.65rem' }}>(-{duoDiscountPct}%)</span>
+            )}
           </button>
         </div>
 
         <div className="card-pricing-row">
           <span className="current-price">₹{currentPrice}</span>
-          <span className="original-price">₹{currentMrp}</span>
-          <span className="discount-pill">{discountPct}% OFF</span>
+          {currentMrp > currentPrice && (
+            <span className="original-price">₹{currentMrp}</span>
+          )}
+          {discountPct > 0 && (
+            <span className="discount-pill">{discountPct}% OFF</span>
+          )}
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '8px' }}>

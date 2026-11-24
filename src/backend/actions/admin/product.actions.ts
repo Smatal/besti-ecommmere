@@ -24,6 +24,7 @@ export interface AdminProductView {
   rating?: number;
   reviewsCount?: number;
   badge?: string;
+  badgeType?: string;
   stock?: number;
   lowStockThreshold?: number;
 }
@@ -64,6 +65,7 @@ export async function adminQuickEditProduct(
     subtitle?: string;
     description?: string;
     badge?: string;
+    badgeType?: string;
   }
 ) {
   try {
@@ -81,6 +83,7 @@ export async function adminQuickEditProduct(
     if (data.subtitle !== undefined) patchData.subtitle = data.subtitle.trim();
     if (data.description !== undefined) patchData.description = data.description.trim();
     if (data.badge !== undefined) patchData.badge = data.badge.trim();
+    if (data.badgeType !== undefined) patchData.badgeType = data.badgeType.trim();
 
     await writeClient.patch(sanityDocId).set(patchData).commit();
 

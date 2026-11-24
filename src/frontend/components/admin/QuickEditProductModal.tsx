@@ -24,6 +24,7 @@ export function QuickEditProductModal({
   const [subtitle, setSubtitle] = useState(product.subtitle || "");
   const [description, setDescription] = useState(product.description || "");
   const [badge, setBadge] = useState(product.badge || "");
+  const [badgeType, setBadgeType] = useState(product.badgeType || "badge-gold");
   const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
@@ -50,6 +51,7 @@ export function QuickEditProductModal({
         subtitle,
         description,
         badge,
+        badgeType,
       });
 
       if (res.success) {
@@ -123,30 +125,50 @@ export function QuickEditProductModal({
               </div>
             </div>
 
+            <div>
+              <label style={{ display: "block", fontSize: "0.8rem", fontWeight: 600, marginBottom: "4px" }}>
+                Category
+              </label>
+              <input
+                type="text"
+                className="admin-input"
+                value={categoryName}
+                onChange={(e) => setCategoryName(e.target.value)}
+                disabled={isPending}
+              />
+            </div>
+
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
               <div>
                 <label style={{ display: "block", fontSize: "0.8rem", fontWeight: 600, marginBottom: "4px" }}>
-                  Category
-                </label>
-                <input
-                  type="text"
-                  className="admin-input"
-                  value={categoryName}
-                  onChange={(e) => setCategoryName(e.target.value)}
-                  disabled={isPending}
-                />
-              </div>
-              <div>
-                <label style={{ display: "block", fontSize: "0.8rem", fontWeight: 600, marginBottom: "4px" }}>
-                  Badge (e.g. BESTSELLER)
+                  Badge Text (e.g. SALON GLOSS)
                 </label>
                 <input
                   type="text"
                   className="admin-input"
                   value={badge}
                   onChange={(e) => setBadge(e.target.value)}
+                  placeholder="e.g. SALON GLOSS"
                   disabled={isPending}
                 />
+              </div>
+              <div>
+                <label style={{ display: "block", fontSize: "0.8rem", fontWeight: 600, marginBottom: "4px" }}>
+                  Badge Style / Color
+                </label>
+                <select
+                  className="admin-input"
+                  value={badgeType}
+                  onChange={(e) => setBadgeType(e.target.value)}
+                  disabled={isPending}
+                >
+                  <option value="badge-gold">Gold (Luxury / Elixir)</option>
+                  <option value="badge-glow">Blue / Cyan (Salon / Gloss / Hydro)</option>
+                  <option value="badge-wine">Wine / Rose (Berry / Potent)</option>
+                  <option value="badge-new">Teal (Clinical / Fresh)</option>
+                  <option value="badge-derma">Black &amp; Gold (Derma)</option>
+                  <option value="badge-save">Red (Save / Sale)</option>
+                </select>
               </div>
             </div>
 
