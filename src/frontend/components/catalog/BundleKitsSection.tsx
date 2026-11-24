@@ -29,9 +29,8 @@ export function BundleKitsSection() {
 
             return (
               <div className="bundle-kit-card" key={bundle.id}>
-                <div className="bundle-kit-badge">{bundle.badge}</div>
-
                 <div className="bundle-kit-media">
+                  {bundle.badge && <div className="bundle-kit-badge">{bundle.badge}</div>}
                   <div className="bundle-kit-thumbnails">
                     {productImgs.map((img, i) => (
                       <React.Fragment key={i}>

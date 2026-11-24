@@ -39,8 +39,12 @@ export function ProductCard({ product }: ProductCardProps) {
           {product.badge && (
             <span className={`badge-pill ${product.badgeType || 'badge-gold'}`}>{product.badge}</span>
           )}
-          {discountPct > 0 && <span className="badge-pill badge-save">SAVE {discountPct}%</span>}
         </div>
+        {discountPct > 0 && (
+          <div className="badge-corner-right">
+            <span className="badge-pill badge-save">SAVE {discountPct}%</span>
+          </div>
+        )}
         <img
           src={product.image}
           alt={product.name}
