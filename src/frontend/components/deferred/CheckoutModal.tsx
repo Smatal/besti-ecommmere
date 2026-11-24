@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useCart } from '@/frontend/context/CartContext';
 import { processCheckoutAction } from '@/backend/actions/checkout.actions';
-import { X, ShoppingBag, Printer, CheckCircle2 } from 'lucide-react';
+import { X, ShoppingBag, Printer, CheckCircle2, ShieldCheck, Zap, CreditCard, Banknote, AlertCircle } from 'lucide-react';
 import { BrandHeartIcon } from '../common/BrandHeartIcon';
 
 export function CheckoutModal() {
@@ -362,8 +362,9 @@ export function CheckoutModal() {
         </div>
 
         {errorMessage && (
-          <div style={{ color: '#dc2626', fontSize: '0.85rem', marginBottom: '14px', textAlign: 'center' }}>
-            ❌ {errorMessage}
+          <div style={{ color: '#dc2626', fontSize: '0.85rem', marginBottom: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}>
+            <AlertCircle size={15} />
+            <span>{errorMessage}</span>
           </div>
         )}
 
@@ -376,35 +377,41 @@ export function CheckoutModal() {
             type="button"
             className="btn btn-gold"
             disabled={isSubmitting}
-            style={{ width: '100%', padding: '14px' }}
+            style={{ width: '100%', padding: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
             onClick={() => handleConfirmOrder('Google Pay / PhonePe UPI', 'UPI')}
           >
-            {isSubmitting
-              ? 'Verifying Order with Server...'
-              : `⚡ Pay ₹${finalTotal.toLocaleString('en-IN')} via Instant UPI (GPay / PhonePe / Paytm)`}
+            <Zap size={16} strokeWidth={2.4} fill="currentColor" />
+            <span>
+              {isSubmitting
+                ? 'Verifying Order with Server...'
+                : `Pay ₹${finalTotal.toLocaleString('en-IN')} via Instant UPI (GPay / PhonePe / Paytm)`}
+            </span>
           </button>
           <button
             type="button"
             className="btn btn-primary"
             disabled={isSubmitting}
-            style={{ width: '100%', padding: '12px' }}
+            style={{ width: '100%', padding: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
             onClick={() => handleConfirmOrder('Debit / Credit Card', 'CARD')}
           >
-            Pay via Debit / Credit Card
+            <CreditCard size={16} strokeWidth={1.8} />
+            <span>Pay via Debit / Credit Card</span>
           </button>
           <button
             type="button"
             className="btn btn-outline"
             disabled={isSubmitting}
-            style={{ width: '100%', padding: '10px' }}
+            style={{ width: '100%', padding: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
             onClick={() => handleConfirmOrder('Cash On Delivery (COD)', 'COD')}
           >
-            Pay via Cash on Delivery (COD)
+            <Banknote size={16} strokeWidth={1.8} />
+            <span>Pay via Cash on Delivery (COD)</span>
           </button>
         </div>
 
-        <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textAlign: 'center' }}>
-          🔒 All transactions are secured by 256-bit SSL encryption.
+        <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}>
+          <ShieldCheck size={14} strokeWidth={2} style={{ color: 'var(--gold-dark)' }} />
+          <span>All transactions are secured by 256-bit SSL encryption.</span>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useCatalog } from '@/frontend/context/CatalogContext';
 import { useCart } from '@/frontend/context/CartContext';
-import { X, ShoppingBag, Zap } from 'lucide-react';
+import { X, ShoppingBag, Zap, Truck, ShieldCheck, Award } from 'lucide-react';
 
 export function ProductDetailModal() {
   const { products, getProductById } = useCatalog();
@@ -71,12 +71,12 @@ export function ProductDetailModal() {
       });
       setPincodeFeedback({
         valid: true,
-        text: `✅ Delivery by ${dateStr} to ${pincode} • Cash on Delivery (COD) Available • Free Shipping`,
+        text: `Delivery by ${dateStr} to ${pincode} • Cash on Delivery (COD) Available • Free Shipping`,
       });
     } else {
       setPincodeFeedback({
         valid: false,
-        text: '❌ Please enter a valid 6-digit Indian PIN code.',
+        text: 'Please enter a valid 6-digit Indian PIN code.',
       });
     }
   };
@@ -358,9 +358,18 @@ export function ProductDetailModal() {
 
             {/* Trust Badges */}
             <div className="pdp-trust-row" style={{ marginTop: '16px' }}>
-              <div>🚚 <strong>Free Shipping</strong> on ₹499+</div>
-              <div>🔒 <strong>100% Safe Checkout</strong> via UPI / Cards</div>
-              <div>🩺 <strong>Dermatologist Formulated</strong></div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', textAlign: 'center' }}>
+                <Truck size={17} strokeWidth={2} style={{ color: 'var(--gold-dark)' }} />
+                <span><strong>Free Shipping</strong> on ₹499+</span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', textAlign: 'center' }}>
+                <ShieldCheck size={17} strokeWidth={2} style={{ color: 'var(--gold-dark)' }} />
+                <span><strong>100% Safe Checkout</strong> via UPI / Cards</span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', textAlign: 'center' }}>
+                <Award size={17} strokeWidth={2} style={{ color: 'var(--gold-dark)' }} />
+                <span><strong>Dermatologist Formulated</strong></span>
+              </div>
             </div>
           </div>
         </div>

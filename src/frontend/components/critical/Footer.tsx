@@ -3,6 +3,7 @@
 import React from 'react';
 import { useCart } from '@/frontend/context/CartContext';
 import { BrandHeartIcon } from '../common/BrandHeartIcon';
+import { CreditCard, Smartphone, ShieldCheck, Truck } from 'lucide-react';
 
 interface FooterProps {
   onSelectCategory?: (category: string) => void;
@@ -146,11 +147,23 @@ export function Footer({ onSelectCategory }: FooterProps) {
               Supports all major UPI methods (Google Pay, PhonePe, Paytm), Credit/Debit Cards, and Cash
               on Delivery.
             </p>
-            <div style={{ fontSize: '1.6rem', display: 'flex', gap: '12px' }}>
-              <span>💳</span>
-              <span>📱</span>
-              <span>🔒</span>
-              <span>🚚</span>
+            <div className="footer-trust-badges">
+              <div className="footer-trust-pill" title="Credit & Debit Cards">
+                <CreditCard size={16} strokeWidth={1.8} />
+                <span>Cards</span>
+              </div>
+              <div className="footer-trust-pill" title="Instant UPI (Google Pay, PhonePe, Paytm)">
+                <Smartphone size={16} strokeWidth={1.8} />
+                <span>Instant UPI</span>
+              </div>
+              <div className="footer-trust-pill" title="256-Bit SSL Encrypted">
+                <ShieldCheck size={16} strokeWidth={1.8} />
+                <span>256-Bit SSL</span>
+              </div>
+              <div className="footer-trust-pill" title="Tracked Express Shipping">
+                <Truck size={16} strokeWidth={1.8} />
+                <span>Tracked Shipping</span>
+              </div>
             </div>
           </div>
         </div>

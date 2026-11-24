@@ -538,8 +538,15 @@ input, select {
 }
 
 .trust-icon {
-  font-size: 1.4rem;
-  color: var(--gold-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(223, 183, 67, 0.12);
+  color: var(--gold-dark);
+  flex-shrink: 0;
 }
 
 .trust-text strong {
@@ -2392,6 +2399,40 @@ input, select {
 .footer-links a:hover {
   color: var(--gold-light);
   transform: translateX(3px);
+}
+
+.footer-trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.footer-trust-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(223, 183, 67, 0.22);
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #e5e7eb;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.footer-trust-pill:hover {
+  background: rgba(223, 183, 67, 0.1);
+  border-color: rgba(223, 183, 67, 0.45);
+  transform: translateY(-1px);
+}
+
+.footer-trust-pill svg {
+  color: var(--gold-light);
+  flex-shrink: 0;
 }
 
 .footer-bottom {

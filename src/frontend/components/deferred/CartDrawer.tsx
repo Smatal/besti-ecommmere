@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useCart } from '@/frontend/context/CartContext';
-import { X, Zap, ShoppingBag } from 'lucide-react';
+import { X, Zap, ShoppingBag, CheckCircle2, Tag, Sparkles } from 'lucide-react';
 import { BrandHeartIcon } from '../common/BrandHeartIcon';
 
 export function CartDrawer() {
@@ -165,7 +165,7 @@ export function CartDrawer() {
                 style={{ display: 'flex' }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span>🎉</span>
+                  <CheckCircle2 size={16} strokeWidth={2.2} style={{ color: '#166534' }} />
                   <span style={{ fontWeight: 700, color: '#166534', fontSize: '0.82rem' }}>
                     {appliedCoupon.code} ({appliedCoupon.pct}% OFF Applied)
                   </span>
@@ -204,11 +204,13 @@ export function CartDrawer() {
             )}
 
             <div className="coupon-chips">
-              <span className="coupon-chip" onClick={() => handleQuickApply('BESTIE10')}>
-                🏷️ BESTIE10 (10% OFF)
+              <span className="coupon-chip" onClick={() => handleQuickApply('BESTIE10')} style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                <Tag size={12} strokeWidth={2} />
+                <span>BESTIE10 (10% OFF)</span>
               </span>
-              <span className="coupon-chip" onClick={() => handleQuickApply('DIWALI20')}>
-                ✨ DIWALI20 (20% OFF)
+              <span className="coupon-chip" onClick={() => handleQuickApply('DIWALI20')} style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                <Sparkles size={12} strokeWidth={2} />
+                <span>DIWALI20 (20% OFF)</span>
               </span>
             </div>
           </div>

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useCart } from '@/frontend/context/CartContext';
 import { BrandHeartIcon } from '../common/BrandHeartIcon';
+import { Sun, Droplets, Sparkles, Award, Leaf, ShieldCheck, Volume2, VolumeX } from 'lucide-react';
 
 export function Hero() {
   const { openPdp } = useCart();
@@ -40,9 +41,18 @@ export function Hero() {
 
           {/* Key Feature Badges Row */}
           <div className="hero-feature-tags">
-            <span className="feature-tag">☀️ SPF 50+ PA++++ (ISO 24444)</span>
-            <span className="feature-tag">💧 100% Zero White Cast</span>
-            <span className="feature-tag">✨ Active Kojic &amp; 20% Vit C</span>
+            <span className="feature-tag" style={{ display: 'inline-flex', alignItems: 'center' }}>
+              <Sun size={13} strokeWidth={2.2} style={{ color: 'var(--gold-dark)', marginRight: '6px' }} />
+              SPF 50+ PA++++ (ISO 24444)
+            </span>
+            <span className="feature-tag" style={{ display: 'inline-flex', alignItems: 'center' }}>
+              <Droplets size={13} strokeWidth={2.2} style={{ color: 'var(--gold-dark)', marginRight: '6px' }} />
+              100% Zero White Cast
+            </span>
+            <span className="feature-tag" style={{ display: 'inline-flex', alignItems: 'center' }}>
+              <Sparkles size={13} strokeWidth={2.2} style={{ color: 'var(--gold-dark)', marginRight: '6px' }} />
+              Active Kojic &amp; 20% Vit C
+            </span>
           </div>
 
           <div className="hero-cta-group">
@@ -81,21 +91,27 @@ export function Hero() {
           {/* Trust Badges */}
           <div className="hero-trust-bar">
             <div className="trust-item">
-              <span className="trust-icon">🩺</span>
+              <span className="trust-icon">
+                <Award size={18} strokeWidth={2} />
+              </span>
               <div className="trust-text">
                 <strong>In-Vivo ISO 24444</strong>
                 <span>Dermatologist certified</span>
               </div>
             </div>
             <div className="trust-item">
-              <span className="trust-icon">🌿</span>
+              <span className="trust-icon">
+                <Leaf size={18} strokeWidth={2} />
+              </span>
               <div className="trust-text">
                 <strong>Clean Formulation</strong>
                 <span>0% Parabens &amp; Sulfates</span>
               </div>
             </div>
             <div className="trust-item">
-              <span className="trust-icon">🐰</span>
+              <span className="trust-icon">
+                <ShieldCheck size={18} strokeWidth={2} />
+              </span>
               <div className="trust-text">
                 <strong>100% Cruelty Free</strong>
                 <span>Ethical &amp; compassionate</span>
@@ -161,8 +177,11 @@ export function Hero() {
                   onClick={toggleSound}
                   aria-label="Toggle Sound"
                   title="Click to Unmute / Mute"
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
-                  <span id="heroSoundIcon">{isMuted ? '🔇' : '🔊'}</span>
+                  <span id="heroSoundIcon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    {isMuted ? <VolumeX size={15} strokeWidth={2.2} /> : <Volume2 size={15} strokeWidth={2.2} />}
+                  </span>
                 </button>
               </div>
               <div

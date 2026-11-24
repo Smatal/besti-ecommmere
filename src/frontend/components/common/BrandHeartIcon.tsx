@@ -32,3 +32,4 @@ export function BrandHeartIcon({ size = 20, className = '', style }: BrandHeartI
     </svg>
   );
 }
+

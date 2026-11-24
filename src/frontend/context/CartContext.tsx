@@ -159,7 +159,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       }
     });
 
-    showToast(`Added ${product.name} (${packLabel}) to your cart! ✨`);
+    showToast(`Added ${product.name} (${packLabel}) to your cart!`);
     openCart();
   };
 
@@ -196,7 +196,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       }
     });
 
-    showToast(`Added ${bundle.title} to your cart with ${bundle.savings}! 🎁`);
+    showToast(`Added ${bundle.title} to your cart with ${bundle.savings}!`);
     openCart();
   };
 
@@ -223,14 +223,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
     const clean = (code || '').trim().toUpperCase();
     if (clean === 'BESTIE10' || clean === 'GLOW10') {
       setAppliedCoupon({ code: clean, pct: 10 });
-      showToast('🎉 Coupon BESTIE10 applied! 10% Extra Discount unlocked!');
+      showToast('Coupon BESTIE10 applied! 10% Extra Discount unlocked!');
       return true;
     } else if (clean === 'DIWALI20') {
       setAppliedCoupon({ code: clean, pct: 20 });
-      showToast('🎉 Coupon DIWALI20 applied! 20% Special Discount unlocked!');
+      showToast('Coupon DIWALI20 applied! 20% Special Discount unlocked!');
       return true;
     } else {
-      showToast('❌ Invalid code. Try code "BESTIE10" for 10% off!');
+      showToast('Invalid coupon code. Try code "BESTIE10" for 10% off.');
       return false;
     }
   };
@@ -248,27 +248,27 @@ export function CartProvider({ children }: { children: ReactNode }) {
   // Milestone Progress
   let shippingProgressPct = 0;
   let shippingMsg = 'Add items to unlock <strong>FREE Delivery & Gifts</strong>';
-  let freebieTierText = '🔒 Free Delivery at ₹499';
+  let freebieTierText = 'Free Delivery at ₹499';
 
   if (subtotal > 0 && subtotal < 499) {
     const diff = 499 - subtotal;
     shippingProgressPct = Math.round((subtotal / 499) * 33);
     shippingMsg = `Add <strong>₹${diff}</strong> more for <strong>FREE Delivery</strong>`;
-    freebieTierText = '🚚 Step 1: Free Delivery at ₹499';
+    freebieTierText = 'Step 1: Free Delivery at ₹499';
   } else if (subtotal >= 499 && subtotal < 999) {
     const diff = 999 - subtotal;
     shippingProgressPct = 33 + Math.round(((subtotal - 499) / 500) * 33);
-    shippingMsg = `🎉 <strong>FREE Delivery Unlocked!</strong> Add <strong>₹${diff}</strong> for a <strong>Free Deluxe Mini Cleanser</strong>`;
-    freebieTierText = '🎁 Next: Free Mini Cleanser at ₹999';
+    shippingMsg = `<strong>FREE Delivery Unlocked!</strong> Add <strong>₹${diff}</strong> for a <strong>Free Deluxe Mini Cleanser</strong>`;
+    freebieTierText = 'Next: Free Mini Cleanser at ₹999';
   } else if (subtotal >= 999 && subtotal < 1499) {
     const diff = 1499 - subtotal;
     shippingProgressPct = 66 + Math.round(((subtotal - 999) / 500) * 34);
-    shippingMsg = `🎁 <strong>Free Mini Cleanser Added!</strong> Add <strong>₹${diff}</strong> for a <strong>Free Bestie Tote Bag</strong>`;
-    freebieTierText = '👜 Next: Free Tote Bag at ₹1,499';
+    shippingMsg = `<strong>Free Mini Cleanser Added!</strong> Add <strong>₹${diff}</strong> for a <strong>Free Bestie Tote Bag</strong>`;
+    freebieTierText = 'Next: Free Tote Bag at ₹1,499';
   } else if (subtotal >= 1499) {
     shippingProgressPct = 100;
-    shippingMsg = '🌟 <strong>VIP Reward Unlocked!</strong> Free Delivery + Deluxe Mini + Bestie Tote Bag Included!';
-    freebieTierText = '✨ All Milestone Freebies Unlocked!';
+    shippingMsg = '<strong>VIP Reward Unlocked!</strong> Free Delivery + Deluxe Mini + Bestie Tote Bag Included!';
+    freebieTierText = 'All Milestone Freebies Unlocked!';
   }
 
   return (
