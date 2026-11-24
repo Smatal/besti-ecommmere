@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useCart } from '@/frontend/context/CartContext';
+import { BrandHeartIcon } from '../common/BrandHeartIcon';
 
 export function Hero() {
   const { openPdp } = useCart();
@@ -181,7 +182,9 @@ export function Hero() {
 
             {/* Floating Guarantee Badge */}
             <div className="hero-floating-guarantee">
-              <span className="guarantee-icon">💛</span>
+              <span className="guarantee-icon" style={{ display: 'inline-flex', alignItems: 'center' }}>
+                <BrandHeartIcon size={18} />
+              </span>
               <span className="guarantee-text">
                 Bestie Cares Promise: 100% Non-Greasy &amp; Zero White Cast
               </span>

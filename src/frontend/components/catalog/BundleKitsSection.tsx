@@ -3,6 +3,7 @@
 import React from 'react';
 import { useCatalog } from '@/frontend/context/CatalogContext';
 import { useCart } from '@/frontend/context/CartContext';
+import { Gift, ShoppingBag } from 'lucide-react';
 
 export function BundleKitsSection() {
   const { bundles, getProductById } = useCatalog();
@@ -57,8 +58,8 @@ export function BundleKitsSection() {
                     ))}
                   </div>
 
-                  <div className="bundle-kit-freebie-tag">
-                    <span style={{ fontSize: '1.1rem' }}>🎁</span>
+                  <div className="bundle-kit-freebie-tag" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <Gift size={16} strokeWidth={2.2} color="var(--gold-primary)" />
                     <span>
                       Includes <strong>{bundle.freebie}</strong>
                     </span>
@@ -74,9 +75,11 @@ export function BundleKitsSection() {
                     </div>
                     <button
                       className="btn btn-gold"
+                      style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
                       onClick={() => addBundleToCart(bundle.id)}
                     >
-                      Add Complete Routine 🛍️
+                      <ShoppingBag size={17} strokeWidth={2.2} />
+                      <span>Add Complete Routine</span>
                     </button>
                   </div>
                 </div>

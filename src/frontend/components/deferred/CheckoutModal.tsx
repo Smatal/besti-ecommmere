@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { useCart } from '@/frontend/context/CartContext';
 import { processCheckoutAction } from '@/backend/actions/checkout.actions';
+import { X, ShoppingBag, Printer, CheckCircle2 } from 'lucide-react';
+import { BrandHeartIcon } from '../common/BrandHeartIcon';
 
 export function CheckoutModal() {
   const {
@@ -130,9 +132,13 @@ export function CheckoutModal() {
           style={{ maxWidth: '460px', padding: '36px', textAlign: 'center', position: 'relative' }}
         >
           <button className="pdp-close-btn" onClick={handleCloseAll} aria-label="Close">
-            ✕
+            <X size={18} strokeWidth={2.4} />
           </button>
-          <div style={{ fontSize: '3.5rem', marginBottom: '12px' }}>🎉</div>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
+            <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: '#dcfce7', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#166534' }}>
+              <CheckCircle2 size={36} strokeWidth={2.2} />
+            </div>
+          </div>
           <h3
             style={{
               fontFamily: 'var(--font-heading)',
@@ -187,17 +193,19 @@ export function CheckoutModal() {
           <div style={{ display: 'flex', gap: '10px' }}>
             <button
               className="btn btn-gold"
-              style={{ flex: 1, padding: '12px' }}
+              style={{ flex: 1, padding: '12px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
               onClick={handleCloseAll}
             >
-              Continue Shopping 🛍️
+              <ShoppingBag size={17} strokeWidth={2.2} />
+              <span>Continue Shopping</span>
             </button>
             <button
               className="btn btn-outline"
-              style={{ padding: '12px 16px' }}
+              style={{ padding: '12px 16px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
               onClick={() => window.print()}
             >
-              Print Receipt 🖨️
+              <Printer size={17} strokeWidth={2.2} />
+              <span>Print Receipt</span>
             </button>
           </div>
         </div>
@@ -223,11 +231,13 @@ export function CheckoutModal() {
           aria-label="Close"
           title="Close (Esc)"
         >
-          ✕
+          <X size={18} strokeWidth={2.4} />
         </button>
 
         <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-          <div style={{ fontSize: '2rem', marginBottom: '6px' }}>💛</div>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '8px' }}>
+            <BrandHeartIcon size={34} />
+          </div>
           <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.4rem', fontWeight: 800 }}>
             Bestie Cares Secure Checkout
           </h3>

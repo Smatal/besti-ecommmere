@@ -3,7 +3,7 @@
 import React from 'react';
 import { Product } from '@/shared/types/product';
 import { useCart } from '@/frontend/context/CartContext';
-import { Eye } from 'lucide-react';
+import { Eye, ShoppingBag } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -118,11 +118,12 @@ export function ProductCard({ product }: ProductCardProps) {
           )}
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '8px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '8px', alignItems: 'center' }}>
           <button
             className="card-cta-btn"
             onClick={() => addToCart(product.id, chosenPack)}
           >
+            <ShoppingBag size={16} strokeWidth={2.2} />
             <span>Add to Cart</span>
             <span>•</span>
             <span>₹{currentPrice}</span>
@@ -130,10 +131,10 @@ export function ProductCard({ product }: ProductCardProps) {
           <button
             className="card-spec-btn"
             onClick={() => openPdp(product.id)}
-            title="View Full Specs"
-            aria-label="View Full Specs"
+            title="View Full Formulation Specs"
+            aria-label="View Full Formulation Specs"
           >
-            <Eye size={18} strokeWidth={2} />
+            <Eye size={18} strokeWidth={2.2} />
           </button>
         </div>
       </div>

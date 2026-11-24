@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { useCart } from '@/frontend/context/CartContext';
+import { X, Zap, ShoppingBag } from 'lucide-react';
+import { BrandHeartIcon } from '../common/BrandHeartIcon';
 
 export function CartDrawer() {
   const {
@@ -73,7 +75,7 @@ export function CartDrawer() {
             onClick={closeCart}
             aria-label="Close Cart"
           >
-            ✕
+            <X size={20} strokeWidth={2.2} />
           </button>
         </div>
 
@@ -100,7 +102,9 @@ export function CartDrawer() {
         <div className="drawer-body" id="cartDrawerItems">
           {cart.length === 0 ? (
             <div className="cart-empty-state">
-              <div className="empty-cart-icon">💛</div>
+              <div className="empty-cart-icon" style={{ display: 'flex', justifyContent: 'center', marginBottom: '12px' }}>
+                <BrandHeartIcon size={44} />
+              </div>
               <h4 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '6px' }}>
                 Your cart is feeling light
               </h4>
@@ -238,7 +242,7 @@ export function CartDrawer() {
 
             <button className="checkout-btn" onClick={openCheckout}>
               <span>Proceed to Instant 1-Click Checkout</span>
-              <span>⚡</span>
+              <Zap size={16} strokeWidth={2.5} fill="#121316" color="#121316" />
             </button>
           </div>
         )}

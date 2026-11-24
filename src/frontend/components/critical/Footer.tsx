@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useCart } from '@/frontend/context/CartContext';
+import { BrandHeartIcon } from '../common/BrandHeartIcon';
 
 interface FooterProps {
   onSelectCategory?: (category: string) => void;
@@ -25,7 +26,7 @@ export function Footer({ onSelectCategory }: FooterProps) {
           <div className="footer-col">
             <div className="brand-logo" style={{ marginBottom: '16px' }}>
               <div className="logo-badge" style={{ background: '#000' }}>
-                <span className="logo-heart">💛</span>
+                <BrandHeartIcon size={22} />
               </div>
               <div className="brand-text">
                 <span className="brand-title" style={{ color: '#fff' }}>

@@ -2,6 +2,8 @@
 
 import React from 'react';
 import { useCart } from '@/frontend/context/CartContext';
+import { Search, ShoppingBag } from 'lucide-react';
+import { BrandHeartIcon } from '../common/BrandHeartIcon';
 
 interface HeaderProps {
   onSelectCategory?: (category: string) => void;
@@ -43,7 +45,7 @@ export function Header({ onSelectCategory, activeCategory = 'all' }: HeaderProps
           }}
         >
           <div className="logo-badge">
-            <span className="logo-heart">💛</span>
+            <BrandHeartIcon size={22} />
           </div>
           <div className="brand-text">
             <span className="brand-title">Bestie Cares</span>
@@ -135,7 +137,7 @@ export function Header({ onSelectCategory, activeCategory = 'all' }: HeaderProps
             }}
             aria-label="Search or Routine Finder"
           >
-            🔍
+            <Search size={19} strokeWidth={2.2} />
           </button>
           <button
             className="icon-btn"
@@ -143,7 +145,7 @@ export function Header({ onSelectCategory, activeCategory = 'all' }: HeaderProps
             onClick={openCart}
             aria-label="Open Shopping Cart"
           >
-            🛍️
+            <ShoppingBag size={19} strokeWidth={2.2} />
             <span className="cart-count" id="cartCountBadge">
               {cartCount}
             </span>

@@ -1528,21 +1528,23 @@ input, select {
   height: 42px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-medium);
-  background: var(--bg-surface);
+  background: #ffffff;
   color: var(--text-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: var(--transition-smooth);
+  transition: all 0.2s ease;
   flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .card-spec-btn:hover {
   background: var(--bg-dark);
-  color: #ffffff;
+  color: var(--gold-light);
   border-color: var(--bg-dark);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(18, 19, 22, 0.15);
 }
 
 /* Product Card Content */

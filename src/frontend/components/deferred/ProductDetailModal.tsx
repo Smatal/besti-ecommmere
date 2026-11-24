@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useCatalog } from '@/frontend/context/CatalogContext';
 import { useCart } from '@/frontend/context/CartContext';
+import { X, ShoppingBag, Zap } from 'lucide-react';
 
 export function ProductDetailModal() {
   const { products, getProductById } = useCatalog();
@@ -108,7 +109,7 @@ export function ProductDetailModal() {
           aria-label="Close details"
           title="Close (Esc)"
         >
-          ✕
+          <X size={18} strokeWidth={2.4} />
         </button>
 
         {/* Breadcrumbs & Back */}
@@ -290,17 +291,33 @@ export function ProductDetailModal() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '20px' }}>
               <button
                 className="btn btn-gold"
-                style={{ padding: '16px', fontSize: '1.05rem' }}
+                style={{
+                  padding: '16px',
+                  fontSize: '1.05rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                }}
                 onClick={handleAddToCart}
               >
-                Add to Cart — ₹{currentPrice}
+                <ShoppingBag size={18} strokeWidth={2.2} />
+                <span>Add to Cart — ₹{currentPrice}</span>
               </button>
               <button
                 className="btn btn-primary"
-                style={{ padding: '14px', fontSize: '0.95rem' }}
+                style={{
+                  padding: '14px',
+                  fontSize: '0.95rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                }}
                 onClick={handleBuyNow}
               >
-                Buy Now with Instant 1-Click UPI ⚡
+                <span>Buy Now with Instant 1-Click UPI</span>
+                <Zap size={16} strokeWidth={2.5} fill="#eab308" color="#eab308" />
               </button>
             </div>
 
