@@ -3,6 +3,7 @@
 import React from 'react';
 import { Product } from '@/shared/types/product';
 import { useCart } from '@/frontend/context/CartContext';
+import { Eye } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -40,8 +41,10 @@ export function ProductCard({ product }: ProductCardProps) {
             e.stopPropagation();
             openPdp(product.id);
           }}
+          aria-label={`View formulation details for ${product.name}`}
         >
-          View Formulation Details →
+          <span>View Formulation Details</span>
+          <span style={{ fontSize: '1rem', lineHeight: 1 }}>&rarr;</span>
         </button>
       </div>
 
@@ -107,12 +110,12 @@ export function ProductCard({ product }: ProductCardProps) {
             <span>₹{currentPrice}</span>
           </button>
           <button
-            className="icon-btn"
-            style={{ border: '1px solid var(--border-medium)' }}
+            className="card-spec-btn"
             onClick={() => openPdp(product.id)}
             title="View Full Specs"
+            aria-label="View Full Specs"
           >
-            👁️
+            <Eye size={18} strokeWidth={2} />
           </button>
         </div>
       </div>

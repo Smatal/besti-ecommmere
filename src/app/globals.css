@@ -1435,6 +1435,7 @@ input, select {
   flex-direction: column;
   gap: 6px;
   z-index: 5;
+  align-items: flex-start;
 }
 
 .badge-pill {
@@ -1444,6 +1445,9 @@ input, select {
   letter-spacing: 0.04em;
   padding: 3px 9px;
   border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
 }
 
 .badge-derma {
@@ -1461,22 +1465,52 @@ input, select {
   color: #ffffff;
 }
 
+.badge-gold {
+  background: var(--gold-gradient);
+  color: #121316;
+  font-weight: 800;
+  box-shadow: 0 2px 8px rgba(197, 155, 39, 0.25);
+}
+
+.badge-glow {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.25);
+}
+
+.badge-wine {
+  background: linear-gradient(135deg, #be185d 0%, #881337 100%);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(136, 19, 55, 0.25);
+}
+
 .quick-view-overlay-btn {
   position: absolute;
   bottom: 14px;
   left: 50%;
-  transform: translateX(-50%) translateY(20px);
+  transform: translateX(-50%) translateY(16px);
   opacity: 0;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(8px);
   color: var(--text-primary);
   padding: 8px 18px;
   border-radius: var(--radius-pill);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   border: 1px solid var(--border-medium);
   transition: var(--transition-smooth);
+  white-space: nowrap;
+  width: max-content;
+  max-width: calc(100% - 28px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  z-index: 6;
+  cursor: pointer;
 }
 
 .product-card:hover .quick-view-overlay-btn {
@@ -1487,6 +1521,28 @@ input, select {
 .quick-view-overlay-btn:hover {
   background: var(--bg-dark);
   color: #ffffff;
+}
+
+.card-spec-btn {
+  width: 44px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-medium);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  flex-shrink: 0;
+}
+
+.card-spec-btn:hover {
+  background: var(--bg-dark);
+  color: #ffffff;
+  border-color: var(--bg-dark);
+  transform: translateY(-1px);
 }
 
 /* Product Card Content */
