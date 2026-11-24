@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCart } from '@/frontend/context/CartContext';
 
 export function CartDrawer() {
@@ -23,6 +23,22 @@ export function CartDrawer() {
   } = useCart();
 
   const [couponInput, setCouponInput] = useState('');
+
+  useEffect(() => {
+    if (!isCartOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeCart();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    const origOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = origOverflow;
+    };
+  }, [isCartOpen, closeCart]);
 
   const handleApplyCoupon = (e: React.FormEvent) => {
     e.preventDefault();

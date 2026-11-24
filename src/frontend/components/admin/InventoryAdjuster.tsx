@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useEffect, useTransition } from "react";
 import { adminAdjustStock } from "@/backend/actions/admin/inventory.actions";
 import { Plus, Minus, Edit3, X } from "lucide-react";
 
@@ -20,6 +20,17 @@ export function InventoryAdjuster({
   const [customDelta, setCustomDelta] = useState("");
   const [reason, setReason] = useState("Restock batch");
   const [isPending, startTransition] = useTransition();
+
+  useEffect(() => {
+    if (!isModalOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && !isPending) {
+        setIsModalOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isModalOpen, isPending]);
 
   const handleQuickAdjust = (delta: number) => {
     startTransition(async () => {
@@ -102,7 +113,14 @@ export function InventoryAdjuster({
       </div>
 
       {isModalOpen && (
-        <div className="admin-modal-overlay">
+        <div
+          className="admin-modal-overlay"
+          onClick={(e) => {
+            if (!isPending && e.target === e.currentTarget) {
+              setIsModalOpen(false);
+            }
+          }}
+        >
           <div className="admin-modal-content">
             <div className="admin-modal-header">
               <div className="admin-modal-title">Adjust Stock: {productId}</div>

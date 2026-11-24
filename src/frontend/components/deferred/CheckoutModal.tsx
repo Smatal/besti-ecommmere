@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCart } from '@/frontend/context/CartContext';
 import { processCheckoutAction } from '@/backend/actions/checkout.actions';
 
@@ -26,6 +26,35 @@ export function CheckoutModal() {
   const [confirmedOrderId, setConfirmedOrderId] = useState<string | null>(null);
   const [confirmedMethod, setConfirmedMethod] = useState<string>('');
   const [serverTotal, setServerTotal] = useState<number>(finalTotal);
+
+  const handleCloseAll = () => {
+    setConfirmedOrderId(null);
+    closeCheckout();
+    window.location.reload();
+  };
+
+  useEffect(() => {
+    if (!isCheckoutOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && !isSubmitting) {
+        if (confirmedOrderId) {
+          handleCloseAll();
+        } else {
+          closeCheckout();
+        }
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    const origOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = origOverflow;
+    };
+  }, [isCheckoutOpen, confirmedOrderId, isSubmitting, closeCheckout]);
 
   if (!isCheckoutOpen) return null;
 
@@ -85,20 +114,22 @@ export function CheckoutModal() {
     }
   };
 
-  const handleCloseAll = () => {
-    setConfirmedOrderId(null);
-    closeCheckout();
-    window.location.reload();
-  };
-
   if (confirmedOrderId) {
     return (
-      <div className="checkout-modal-overlay" id="orderSuccessModal">
+      <div
+        className="checkout-modal-overlay"
+        id="orderSuccessModal"
+        onClick={(e) => {
+          if (e.target === e.currentTarget) {
+            handleCloseAll();
+          }
+        }}
+      >
         <div
           className="pdp-modal-content"
-          style={{ maxWidth: '460px', padding: '36px', textAlign: 'center' }}
+          style={{ maxWidth: '460px', padding: '36px', textAlign: 'center', position: 'relative' }}
         >
-          <button className="pdp-close-btn" onClick={handleCloseAll}>
+          <button className="pdp-close-btn" onClick={handleCloseAll} aria-label="Close">
             ✕
           </button>
           <div style={{ fontSize: '3.5rem', marginBottom: '12px' }}>🎉</div>
@@ -175,9 +206,23 @@ export function CheckoutModal() {
   }
 
   return (
-    <div className="checkout-modal-overlay" id="checkoutSheet">
-      <div className="pdp-modal-content" style={{ maxWidth: '520px', padding: '32px' }}>
-        <button className="pdp-close-btn" onClick={closeCheckout} disabled={isSubmitting}>
+    <div
+      className="checkout-modal-overlay"
+      id="checkoutSheet"
+      onClick={(e) => {
+        if (!isSubmitting && e.target === e.currentTarget) {
+          closeCheckout();
+        }
+      }}
+    >
+      <div className="pdp-modal-content" style={{ maxWidth: '520px', padding: '32px', position: 'relative' }}>
+        <button
+          className="pdp-close-btn"
+          onClick={closeCheckout}
+          disabled={isSubmitting}
+          aria-label="Close"
+          title="Close (Esc)"
+        >
           ✕
         </button>
 

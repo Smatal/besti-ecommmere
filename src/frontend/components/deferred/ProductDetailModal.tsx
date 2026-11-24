@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCatalog } from '@/frontend/context/CatalogContext';
 import { useCart } from '@/frontend/context/CartContext';
 
@@ -16,6 +16,25 @@ export function ProductDetailModal() {
     valid: boolean;
     text: string;
   } | null>(null);
+
+  useEffect(() => {
+    if (!activePdpId) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closePdp();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    const origOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = origOverflow;
+    };
+  }, [activePdpId, closePdp]);
 
   if (!activePdpId) return null;
 
@@ -63,9 +82,22 @@ export function ProductDetailModal() {
   };
 
   return (
-    <div className="pdp-modal active" id="pdpModal" style={{ overflowY: 'auto' }}>
-      <div className="pdp-modal-content" style={{ maxWidth: '1100px', padding: '32px' }}>
-        <button className="pdp-close-btn" onClick={closePdp}>
+    <div
+      className="pdp-modal active"
+      id="pdpModal"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          closePdp();
+        }
+      }}
+    >
+      <div className="pdp-modal-content" style={{ maxWidth: '1100px', padding: '32px', position: 'relative' }}>
+        <button
+          className="pdp-close-btn"
+          onClick={closePdp}
+          aria-label="Close details"
+          title="Close (Esc)"
+        >
           ✕
         </button>
 
@@ -78,6 +110,7 @@ export function ProductDetailModal() {
             marginBottom: '24px',
             flexWrap: 'wrap',
             gap: '12px',
+            paddingRight: '48px',
           }}
         >
           <div

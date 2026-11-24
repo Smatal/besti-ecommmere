@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useTransition } from "react";
+import { useState, useMemo, useTransition, useEffect } from "react";
 import Link from "next/link";
 import { AdminProductView, adminDeleteProduct, adminBulkDeleteProducts, adminBulkUpdateCategory } from "@/backend/actions/admin/product.actions";
 import { AdminTableToolbar } from "./AdminTableToolbar";
@@ -15,6 +15,7 @@ import {
   AlertTriangle,
   Upload,
   Plus,
+  X,
 } from "lucide-react";
 
 export function ProductTableClient({ products }: { products: AdminProductView[] }) {
@@ -28,6 +29,17 @@ export function ProductTableClient({ products }: { products: AdminProductView[] 
   const [isBulkCategoryOpen, setIsBulkCategoryOpen] = useState(false);
   const [newBulkCategory, setNewBulkCategory] = useState("");
   const [isPending, startTransition] = useTransition();
+
+  useEffect(() => {
+    if (!isBulkCategoryOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && !isPending) {
+        setIsBulkCategoryOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isBulkCategoryOpen, isPending]);
 
   // Extract unique category names
   const categories = useMemo(() => {
@@ -499,10 +511,35 @@ export function ProductTableClient({ products }: { products: AdminProductView[] 
 
       {/* Bulk Category Modal */}
       {isBulkCategoryOpen && (
-        <div className="admin-modal-overlay">
+        <div
+          className="admin-modal-overlay"
+          onClick={(e) => {
+            if (!isPending && e.target === e.currentTarget) {
+              setIsBulkCategoryOpen(false);
+            }
+          }}
+        >
           <div className="admin-modal-content">
             <div className="admin-modal-header">
               <div className="admin-modal-title">Bulk Update Category</div>
+              <button
+                type="button"
+                onClick={() => setIsBulkCategoryOpen(false)}
+                disabled={isPending}
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  cursor: isPending ? "not-allowed" : "pointer",
+                  color: "#64748b",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "4px",
+                }}
+                aria-label="Close modal"
+              >
+                <X size={18} />
+              </button>
             </div>
             <form onSubmit={handleBulkCategorySubmit}>
               <div className="admin-modal-body">

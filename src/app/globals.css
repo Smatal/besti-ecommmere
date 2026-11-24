@@ -64,6 +64,26 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
 
 html {
@@ -2099,6 +2119,8 @@ input, select {
   align-items: center;
   justify-content: center;
   padding: 20px;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -2132,28 +2154,33 @@ input, select {
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
   position: relative;
   border: 1px solid var(--border-light);
+  scrollbar-gutter: stable;
 }
 
 .pdp-close-btn {
   position: absolute;
   top: 18px;
-  right: 18px;
+  right: 22px;
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: var(--bg-surface);
-  color: var(--text-primary);
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #334155;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
-  z-index: 10;
-  transition: var(--transition-smooth);
+  font-size: 1.15rem;
+  z-index: 20;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .pdp-close-btn:hover {
-  background: var(--bg-dark);
+  background: #0f172a;
   color: #ffffff;
+  border-color: #0f172a;
+  transform: scale(1.05);
 }
 
 .pdp-layout-grid {

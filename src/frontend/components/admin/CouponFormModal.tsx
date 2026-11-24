@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useEffect, useTransition } from "react";
 import { adminCreateCoupon } from "@/backend/actions/admin/coupon.actions";
 import { X, Tag } from "lucide-react";
 
@@ -19,6 +19,17 @@ export function CouponFormModal({ isOpen, onClose, onSuccess }: CouponFormModalP
   const [maxUses, setMaxUses] = useState("");
   const [expiresAt, setExpiresAt] = useState("");
   const [isPending, startTransition] = useTransition();
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && !isPending) {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, isPending, onClose]);
 
   if (!isOpen) return null;
 
@@ -46,7 +57,14 @@ export function CouponFormModal({ isOpen, onClose, onSuccess }: CouponFormModalP
   };
 
   return (
-    <div className="admin-modal-overlay">
+    <div
+      className="admin-modal-overlay"
+      onClick={(e) => {
+        if (!isPending && e.target === e.currentTarget) {
+          onClose();
+        }
+      }}
+    >
       <div className="admin-modal-content">
         <div className="admin-modal-header">
           <div className="admin-modal-title" style={{ display: "flex", alignItems: "center", gap: "8px" }}>

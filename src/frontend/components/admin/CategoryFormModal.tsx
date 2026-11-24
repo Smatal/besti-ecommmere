@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useEffect, useTransition } from "react";
 import { adminCreateCategory } from "@/backend/actions/admin/category.actions";
 import { X, FolderPlus } from "lucide-react";
 
@@ -14,6 +14,17 @@ export function CategoryFormModal({ isOpen, onClose, onSuccess }: CategoryFormMo
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [isPending, startTransition] = useTransition();
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && !isPending) {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, isPending, onClose]);
 
   if (!isOpen) return null;
 
@@ -31,7 +42,14 @@ export function CategoryFormModal({ isOpen, onClose, onSuccess }: CategoryFormMo
   };
 
   return (
-    <div className="admin-modal-overlay">
+    <div
+      className="admin-modal-overlay"
+      onClick={(e) => {
+        if (!isPending && e.target === e.currentTarget) {
+          onClose();
+        }
+      }}
+    >
       <div className="admin-modal-content">
         <div className="admin-modal-header">
           <div className="admin-modal-title" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
